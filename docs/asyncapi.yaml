@@ -1,0 +1,122 @@
+asyncapi: "2.0.0"
+info:
+  title: "Application API"
+  version: "0.1.0"
+  contact:
+    name: "Fancy Team"
+    url: "https://greenhalos.lu"
+    email: "asyncapi@greenhalos.lu"
+servers:
+  test:
+    url: "http://rabbitmq"
+    protocol: "amqp"
+    description: "RabbitMQ Server"
+channels:
+  channelName:
+    description: "Publish information"
+    subscribe:
+      message:
+        payload:
+          properties:
+            exampleEnum:
+              title: "exampleEnum"
+              examples:
+              - "VALUE_2"
+              - "VALUE_3"
+              type: "string"
+              enum:
+              - "VALUE_2"
+              - "VALUE_3"
+            intAmount:
+              title: "intAmount"
+              examples:
+              - 42
+              - 352
+              type: "integer"
+              format: "int32"
+            innerExample:
+              title: "innerExample"
+              properties:
+                innerCurrency:
+                  title: "innerCurrency"
+                  examples:
+                  - "blah"
+                  - "blub"
+                  type: "string"
+                nestedInnerExample:
+                  title: "nestedInnerExample"
+                  properties:
+                    nestedInnerCurrency:
+                      title: "nestedInnerCurrency"
+                      examples:
+                      - "blah"
+                      - "blub"
+                      type: "string"
+            finalCurrency:
+              title: "finalCurrency"
+              examples:
+              - "blah"
+              - "blub"
+              type: "string"
+            listCurrency:
+              title: "listCurrency"
+              type: "array"
+              items:
+                examples:
+                - "blah"
+                - "blub"
+                type: "string"
+            privateFinalCurrency:
+              title: "privateFinalCurrency"
+              examples:
+              - "blah"
+              - "blub"
+              type: "string"
+            isFancy:
+              title: "isFancy"
+              examples:
+              - true
+              - false
+              type: "boolean"
+            doubleAmount:
+              title: "doubleAmount"
+              examples:
+              - 42.42
+              - 352.01
+              type: "number"
+              format: "double"
+            floatingAmount:
+              title: "floatingAmount"
+              examples:
+              - 42.42
+              - 352.01
+              type: "number"
+              format: "float"
+            bigDecimalAmount:
+              title: "bigDecimalAmount"
+              examples:
+              - 42.42
+              - 352.01
+              type: "number"
+              format: "float"
+            fieldAnnotation:
+              title: "fieldAnnotation"
+              examples:
+              - "456565"
+              - "4654"
+              type: "integer"
+              format: "flapping"
+            currency:
+              title: "currency"
+              examples:
+              - "blah"
+              - "blub"
+              type: "string"
+            longAmount:
+              title: "longAmount"
+              examples:
+              - 42
+              - 352
+              type: "integer"
+              format: "int64"
+        title: "lu.greenhalos.j2asyncapi.core.WriteToFileTest$Example"

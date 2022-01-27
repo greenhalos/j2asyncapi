@@ -1,0 +1,54 @@
+asyncapi: "2.0.0"
+info:
+  title: "Application API"
+  version: "0.1.0"
+  contact:
+    name: "Fancy Team"
+    url: "https://greenhalos.lu"
+    email: "asyncapi@greenhalos.lu"
+servers:
+  test:
+    url: "http://rabbitmq"
+    protocol: "amqp"
+    description: "RabbitMQ Server"
+channels:
+  exchange/routing.key:
+    description: "Description explaining exactly what happens here"
+    subscribe:
+      message:
+        payload:
+          properties:
+            amount:
+              title: "amount"
+              examples:
+              - 42.42
+              - 352.01
+              type: "number"
+              format: "float"
+            currency:
+              title: "currency"
+              examples:
+              - 42
+              - 352
+              type: "integer"
+              format: "int32"
+        title: "lu.greenhalos.j2asyncapi.annoations.example.publisher.ExamplePublisher$ExamplePublisherMessage"
+    publish:
+      message:
+        payload:
+          properties:
+            amount:
+              title: "amount"
+              examples:
+              - 42.42
+              - 352.01
+              type: "number"
+              format: "float"
+            currency:
+              title: "currency"
+              examples:
+              - "EUR"
+              - "USD"
+              - "CHF"
+              type: "string"
+        title: "lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ExampleListenerMessage"

@@ -1,0 +1,19 @@
+{
+  "name": "j2asyncapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "asyncapi": "npm run asyncapi-md && npm run asyncapi-md-annotations",
+    "asyncapi-md": "ag ./docs/asyncapi.yaml @asyncapi/markdown-template --param outFilename=asyncapi.md --output ./docs/ --force-write",
+    "asyncapi-md-annotations": "ag ./docs/asyncapi-annotations.yaml @asyncapi/markdown-template --param outFilename=asyncapi-annotations.md --output ./docs/ --force-write"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@asyncapi/generator": "^1.8.27"
+  }
+}
