@@ -23,6 +23,8 @@ import java.io.IOException;
 
 import java.math.BigDecimal;
 
+import java.time.LocalDate;
+
 import java.util.List;
 import java.util.Map;
 
@@ -109,6 +111,7 @@ public class WriteToFileTest {
         private final String privateFinalCurrency;
         public List<String> listCurrency;
         public ExampleEnum exampleEnum;
+        public LocalDate exampleLocalDate;
 
         @AsyncApi.Field(type = Integer.class, examples = { "456565", "4654" }, format = "flapping")
         public String fieldAnnotation;

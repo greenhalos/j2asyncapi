@@ -24,7 +24,8 @@ public class FieldUtil {
     private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     private static final List<FieldType> FIELD_TYPES = List.of(new NumberFieldType(), new StringFieldType(),
-            new BooleanFieldType(), new DecimalNumberFieldType(), new ListFieldType(), new EnumFieldType());
+            new BooleanFieldType(), new DecimalNumberFieldType(), new ListFieldType(), new EnumFieldType(),
+            new DateFieldType());
 
     public static Schema process(Field field) {
 

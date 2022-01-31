@@ -99,6 +99,13 @@ channels:
               - 352.01
               type: "number"
               format: "float"
+            exampleLocalDate:
+              title: "exampleLocalDate"
+              examples:
+              - "2022-01-31"
+              - "1985-04-12"
+              type: "string"
+              format: "date"
             fieldAnnotation:
               title: "fieldAnnotation"
               examples:
