@@ -16,128 +16,134 @@ channels:
     description: "Publish information"
     subscribe:
       message:
-        payload:
-          properties:
-            exampleEnum:
-              title: "exampleEnum"
-              examples:
-              - "VALUE_2"
-              - "VALUE_3"
-              type: "string"
-              enum:
-              - "VALUE_2"
-              - "VALUE_3"
-            intAmount:
-              title: "intAmount"
-              examples:
-              - 42
-              - 352
-              type: "integer"
-              format: "int32"
-            exampleLocalDateTime:
-              title: "exampleLocalDateTime"
-              examples:
-              - "2022-01-31T23:20:50.52Z"
-              - "1985-04-12T15:59:55-08:00"
-              type: "string"
-              format: "date-time"
-            innerExample:
-              title: "innerExample"
-              properties:
-                innerCurrency:
-                  title: "innerCurrency"
-                  examples:
-                  - "blah"
-                  - "blub"
-                  type: "string"
-                nestedInnerExample:
-                  title: "nestedInnerExample"
-                  properties:
-                    nestedInnerCurrency:
-                      title: "nestedInnerCurrency"
-                      examples:
-                      - "blah"
-                      - "blub"
-                      type: "string"
-            finalCurrency:
-              title: "finalCurrency"
-              examples:
-              - "blah"
-              - "blub"
-              type: "string"
-            listCurrency:
-              title: "listCurrency"
-              type: "array"
-              items:
-                examples:
-                - "blah"
-                - "blub"
-                type: "string"
-            privateFinalCurrency:
-              title: "privateFinalCurrency"
-              examples:
-              - "blah"
-              - "blub"
-              type: "string"
-            isFancy:
-              title: "isFancy"
-              examples:
-              - true
-              - false
-              type: "boolean"
-            doubleAmount:
-              title: "doubleAmount"
-              examples:
-              - 42.42
-              - 352.01
-              type: "number"
-              format: "double"
-            exampleInstant:
-              title: "exampleInstant"
-              examples:
-              - "2022-01-31T23:20:50.52Z"
-              - "1985-04-12T15:59:55-08:00"
-              type: "string"
-              format: "date-time"
-            floatingAmount:
-              title: "floatingAmount"
-              examples:
-              - 42.42
-              - 352.01
-              type: "number"
-              format: "float"
-            bigDecimalAmount:
-              title: "bigDecimalAmount"
-              examples:
-              - 42.42
-              - 352.01
-              type: "number"
-              format: "float"
-            exampleLocalDate:
-              title: "exampleLocalDate"
-              examples:
-              - "2022-01-31"
-              - "1985-04-12"
-              type: "string"
-              format: "date"
-            fieldAnnotation:
-              title: "fieldAnnotation"
-              examples:
-              - "456565"
-              - "4654"
-              type: "integer"
-              format: "flapping"
-            currency:
-              title: "currency"
-              examples:
-              - "blah"
-              - "blub"
-              type: "string"
-            longAmount:
-              title: "longAmount"
-              examples:
-              - 42
-              - 352
-              type: "integer"
-              format: "int64"
-        title: "lu.greenhalos.j2asyncapi.core.WriteToFileTest$Example"
+        $ref: "#/components/messages/lu.greenhalos.j2asyncapi.core.WriteToFileTest$Example"
+components:
+  schemas:
+    java.lang.Integer-decfea64:
+      examples:
+      - 42
+      - 352
+      type: "integer"
+      format: "int32"
+    java.lang.Float-dbc8e12d:
+      examples:
+      - 42.42
+      - 352.01
+      type: "number"
+      format: "float"
+    lu.greenhalos.j2asyncapi.core.WriteToFileTest$NestedInnerExample:
+      title: "NestedInnerExample"
+      properties:
+        nestedInnerCurrency:
+          $ref: "#/components/schemas/java.lang.String-216cb264"
+    java.lang.Double-ed55d4cc:
+      examples:
+      - 42.42
+      - 352.01
+      type: "number"
+      format: "double"
+    java.time.Instant-b3f0e98:
+      examples:
+      - "2022-01-31T23:20:50.52Z"
+      - "1985-04-12T15:59:55-08:00"
+      type: "string"
+      format: "date-time"
+    java.math.BigDecimal-dbc8e12d:
+      examples:
+      - 42.42
+      - 352.01
+      type: "number"
+      format: "float"
+    java.util.List-39a15bb0:
+      type: "array"
+      items:
+        $ref: "#/components/schemas/java.lang.String-216cb264"
+    lu.greenhalos.j2asyncapi.core.WriteToFileTest$Example:
+      title: "Example"
+      properties:
+        exampleEnum:
+          $ref: "#/components/schemas/lu.greenhalos.j2asyncapi.core.WriteToFileTest$ExampleEnum-f54df644"
+        intAmount:
+          $ref: "#/components/schemas/java.lang.Integer-decfea64"
+        exampleLocalDateTime:
+          $ref: "#/components/schemas/java.time.LocalDateTime-b3f0e98"
+        innerExample:
+          $ref: "#/components/schemas/lu.greenhalos.j2asyncapi.core.WriteToFileTest$InnerExample"
+        finalCurrency:
+          $ref: "#/components/schemas/java.lang.String-216cb264"
+        listCurrency:
+          $ref: "#/components/schemas/java.util.List-39a15bb0"
+        privateFinalCurrency:
+          $ref: "#/components/schemas/java.lang.String-216cb264"
+        isFancy:
+          $ref: "#/components/schemas/java.lang.Boolean-96239209"
+        doubleAmount:
+          $ref: "#/components/schemas/java.lang.Double-ed55d4cc"
+        exampleInstant:
+          $ref: "#/components/schemas/java.time.Instant-b3f0e98"
+        floatingAmount:
+          $ref: "#/components/schemas/java.lang.Float-dbc8e12d"
+        bigDecimalAmount:
+          $ref: "#/components/schemas/java.math.BigDecimal-dbc8e12d"
+        exampleLocalDate:
+          $ref: "#/components/schemas/java.time.LocalDate-b6e08ca0"
+        fieldAnnotation:
+          $ref: "#/components/schemas/java.lang.Integer-c5a8ddd3"
+        currency:
+          $ref: "#/components/schemas/java.lang.String-216cb264"
+        longAmount:
+          $ref: "#/components/schemas/java.lang.Long-dff9a141"
+    lu.greenhalos.j2asyncapi.core.WriteToFileTest$InnerExample:
+      title: "InnerExample"
+      properties:
+        innerCurrency:
+          $ref: "#/components/schemas/java.lang.String-216cb264"
+        nestedInnerExample:
+          $ref: "#/components/schemas/lu.greenhalos.j2asyncapi.core.WriteToFileTest$NestedInnerExample"
+    java.lang.Long-dff9a141:
+      examples:
+      - 42
+      - 352
+      type: "integer"
+      format: "int64"
+    java.time.LocalDateTime-b3f0e98:
+      examples:
+      - "2022-01-31T23:20:50.52Z"
+      - "1985-04-12T15:59:55-08:00"
+      type: "string"
+      format: "date-time"
+    java.lang.String-216cb264:
+      examples:
+      - "blah"
+      - "blub"
+      type: "string"
+    java.lang.Boolean-96239209:
+      examples:
+      - true
+      - false
+      type: "boolean"
+    java.time.LocalDate-b6e08ca0:
+      examples:
+      - "2022-01-31"
+      - "1985-04-12"
+      type: "string"
+      format: "date"
+    java.lang.Integer-c5a8ddd3:
+      examples:
+      - "456565"
+      - "4654"
+      type: "integer"
+      format: "flapping"
+    lu.greenhalos.j2asyncapi.core.WriteToFileTest$ExampleEnum-f54df644:
+      examples:
+      - "VALUE_2"
+      - "VALUE_3"
+      type: "string"
+      enum:
+      - "VALUE_2"
+      - "VALUE_3"
+  messages:
+    lu.greenhalos.j2asyncapi.core.WriteToFileTest$Example:
+      payload:
+        $ref: "#/components/schemas/lu.greenhalos.j2asyncapi.core.WriteToFileTest$Example"
+      title: "lu.greenhalos.j2asyncapi.core.WriteToFileTest$Example"

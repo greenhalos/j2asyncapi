@@ -18,7 +18,6 @@ class LocalDateTest {
     void testField() {
 
         var fieldSchema = new Schema();
-        fieldSchema.setTitle("field");
         fieldSchema.setType("string");
         fieldSchema.setFormat("date");
         fieldSchema.setExamples(List.of("2022-01-31", "1985-04-12"));

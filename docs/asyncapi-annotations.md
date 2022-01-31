@@ -28,7 +28,7 @@ RabbitMQ Server
 
 Description explaining exactly what happens here
 
-#### Message lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ExampleListenerMessage `<anonymous-message-1>`
+#### Message lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ExampleListenerMessage `lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ExampleListenerMessage`
 
 ##### Payload
 
@@ -36,14 +36,14 @@ Description explaining exactly what happens here
 |---|---|---|---|---|---|
 | (root) | - | - | - | - | **additional properties are allowed** |
 | amount | number | - | examples (`42.42`, `352.01`) | format (`float`) | - |
-| currency | string | - | examples (`"blah"`, `"blub"`) | - | - |
+| currency | string | - | examples (`"EUR"`, `"USD"`, `"CHF"`) | - | - |
 
 > Examples of payload _(generated)_
 
 ```json
 {
   "amount": 42.42,
-  "currency": "blah"
+  "currency": "EUR"
 }
 ```
 
@@ -53,7 +53,7 @@ Description explaining exactly what happens here
 
 Description explaining exactly what happens here
 
-#### Message lu.greenhalos.j2asyncapi.annoations.example.publisher.ExamplePublisher$ExamplePublisherMessage `<anonymous-message-2>`
+#### Message lu.greenhalos.j2asyncapi.annoations.example.publisher.ExamplePublisher$ExamplePublisherMessage `lu.greenhalos.j2asyncapi.annoations.example.publisher.ExamplePublisher$ExamplePublisherMessage`
 
 ##### Payload
 
@@ -61,14 +61,14 @@ Description explaining exactly what happens here
 |---|---|---|---|---|---|
 | (root) | - | - | - | - | **additional properties are allowed** |
 | amount | number | - | examples (`42.42`, `352.01`) | format (`float`) | - |
-| currency | string | - | examples (`"blah"`, `"blub"`) | - | - |
+| currency | integer | - | examples (`42`, `352`) | format (`int32`) | - |
 
 > Examples of payload _(generated)_
 
 ```json
 {
   "amount": 42.42,
-  "currency": "blah"
+  "currency": 42
 }
 ```
 

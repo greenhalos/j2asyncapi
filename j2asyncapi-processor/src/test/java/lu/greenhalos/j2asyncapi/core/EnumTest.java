@@ -22,7 +22,6 @@ class EnumTest {
     void testField() {
 
         var fieldSchema = new Schema();
-        fieldSchema.setTitle("field");
         fieldSchema.setType("string");
         fieldSchema.setFormat(null);
         fieldSchema.setExamples(List.of("VALUE_1", "VALUE_2"));

@@ -55,7 +55,6 @@ class Listener {
 
 # TODOS
 
-* Date and Times
 * AsyncApi.Message
 * @JsonIgnore
 * Empty body

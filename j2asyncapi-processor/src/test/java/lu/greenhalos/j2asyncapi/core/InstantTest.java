@@ -18,7 +18,6 @@ class InstantTest {
     void testField() {
 
         var fieldSchema = new Schema();
-        fieldSchema.setTitle("field");
         fieldSchema.setType("string");
         fieldSchema.setFormat("date-time");
         fieldSchema.setExamples(List.of("2022-01-31T23:20:50.52Z", "1985-04-12T15:59:55-08:00"));

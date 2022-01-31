@@ -27,36 +27,41 @@ RabbitMQ Server
 
 Publish information
 
-#### Message lu.greenhalos.j2asyncapi.core.Example `<anonymous-message-1>`
+#### Message lu.greenhalos.j2asyncapi.core.WriteToFileTest$Example `lu.greenhalos.j2asyncapi.core.WriteToFileTest$Example`
 
 ##### Payload
 
 | Name | Type | Description | Value | Constraints | Notes |
 |---|---|---|---|---|---|
 | (root) | - | - | - | - | **additional properties are allowed** |
-| floatingAmount | number | - | examples (`42.42`, `352.01`) | format (`float`) | - |
-| bigDecimalAmount | number | - | examples (`42.42`, `352.01`) | format (`float`) | - |
-| intAmount | integer | - | examples (`42`, `352`) | format (`int32`) | - |
+| exampleEnum | string | - | allowed (`"VALUE_2"`, `"VALUE_3"`), examples (`"VALUE_2"`, `"VALUE_3"`) | - | - |
+| intAmount | integer | - | examples (`"456565"`, `"4654"`) | format (`flapping`) | - |
+| exampleLocalDateTime | string | - | examples (`"2022-01-31T23:20:50.52Z"`, `"1985-04-12T15:59:55-08:00"`) | format (`date-time`) | - |
 | innerExample | - | - | - | - | **additional properties are allowed** |
 | innerExample.innerCurrency | string | - | examples (`"blah"`, `"blub"`) | - | - |
 | innerExample.nestedInnerExample | - | - | - | - | **additional properties are allowed** |
 | innerExample.nestedInnerExample.nestedInnerCurrency | string | - | examples (`"blah"`, `"blub"`) | - | - |
 | finalCurrency | string | - | examples (`"blah"`, `"blub"`) | - | - |
-| currency | string | - | examples (`"blah"`, `"blub"`) | - | - |
 | listCurrency | array<string> | - | - | - | - |
 | listCurrency (single item) | string | - | examples (`"blah"`, `"blub"`) | - | - |
 | privateFinalCurrency | string | - | examples (`"blah"`, `"blub"`) | - | - |
 | isFancy | boolean | - | examples (`true`, `false`) | - | - |
 | doubleAmount | number | - | examples (`42.42`, `352.01`) | format (`double`) | - |
+| exampleInstant | string | - | examples (`"2022-01-31T23:20:50.52Z"`, `"1985-04-12T15:59:55-08:00"`) | format (`date-time`) | - |
+| floatingAmount | number | - | examples (`42.42`, `352.01`) | format (`float`) | - |
+| bigDecimalAmount | number | - | examples (`42.42`, `352.01`) | format (`float`) | - |
+| exampleLocalDate | string | - | examples (`"2022-01-31"`, `"1985-04-12"`) | format (`date`) | - |
+| fieldAnnotation | integer | - | examples (`"456565"`, `"4654"`) | format (`flapping`) | - |
+| currency | string | - | examples (`"blah"`, `"blub"`) | - | - |
 | longAmount | integer | - | examples (`42`, `352`) | format (`int64`) | - |
 
 > Examples of payload _(generated)_
 
 ```json
 {
-  "floatingAmount": 42.42,
-  "bigDecimalAmount": 42.42,
-  "intAmount": 42,
+  "exampleEnum": "VALUE_2",
+  "intAmount": "456565",
+  "exampleLocalDateTime": "2022-01-31T23:20:50.52Z",
   "innerExample": {
     "innerCurrency": "blah",
     "nestedInnerExample": {
@@ -64,13 +69,18 @@ Publish information
     }
   },
   "finalCurrency": "blah",
-  "currency": "blah",
   "listCurrency": [
     "blah"
   ],
   "privateFinalCurrency": "blah",
   "isFancy": true,
   "doubleAmount": 42.42,
+  "exampleInstant": "2022-01-31T23:20:50.52Z",
+  "floatingAmount": 42.42,
+  "bigDecimalAmount": 42.42,
+  "exampleLocalDate": "2022-01-31",
+  "fieldAnnotation": "456565",
+  "currency": "blah",
   "longAmount": 42
 }
 ```

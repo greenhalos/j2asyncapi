@@ -1,9 +1,6 @@
-package lu.greenhalos.j2asyncapi.core.annotations;
+package lu.greenhalos.j2asyncapi.core;
 
 import com.asyncapi.v2.model.schema.Schema;
-
-import lu.greenhalos.j2asyncapi.annotations.AsyncApi;
-import lu.greenhalos.j2asyncapi.core.FieldTestUtil;
 
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +10,7 @@ import java.util.List;
 /**
  * @author  Ben Antony - antony@greenhalos.lu
  */
-class FieldNothingSetTest {
+class StaticFinalTest {
 
     @Test
     void testField() {
@@ -28,7 +25,8 @@ class FieldNothingSetTest {
 
     private static class Example {
 
-        @AsyncApi.Field
+        private static final String FIELD_TO_IGNORE = "ignoreMe";
+
         private String field;
     }
 }

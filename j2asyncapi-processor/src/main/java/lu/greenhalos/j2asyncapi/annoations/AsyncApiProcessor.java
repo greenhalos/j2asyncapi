@@ -1,7 +1,9 @@
 package lu.greenhalos.j2asyncapi.annoations;
 
+import com.asyncapi.v2.model.AsyncAPI;
 import com.asyncapi.v2.model.channel.ChannelItem;
 import com.asyncapi.v2.model.channel.operation.Operation;
+import com.asyncapi.v2.model.component.Components;
 
 import lu.greenhalos.j2asyncapi.annotations.AsyncApi;
 import lu.greenhalos.j2asyncapi.core.MessageUtil;
@@ -18,13 +20,11 @@ import org.slf4j.LoggerFactory;
 import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Method;
 
-import java.util.Map;
+import java.util.HashMap;
 import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.toConcurrentMap;
 
 
 /**
@@ -34,18 +34,32 @@ public class AsyncApiProcessor {
 
     private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    public static Map<String, ChannelItem> process(Class<?> baseClass) {
+    public static void process(Class<?> baseClass, AsyncAPI asyncAPI) {
 
         var packageName = baseClass.getPackageName();
         LOG.info("Start looking for AsyncApi annotations in package in {}", packageName);
 
+        // Prepare asyncAPI
+        var components = new Components();
+        components.setMessages(new HashMap<>());
+        components.setSchemas(new HashMap<>());
+
+        asyncAPI.setChannels(new HashMap<>());
+        asyncAPI.setComponents(components);
+
         Reflections reflections = new Reflections(new ConfigurationBuilder().forPackage(packageName)
                 .setScanners(Scanners.SubTypes, Scanners.MethodsAnnotated));
 
-        return reflections.getMethodsAnnotatedWith(AsyncApi.class)
-            .stream()
-            .collect(toConcurrentMap(AsyncApiProcessor::getChannelName, AsyncApiProcessor::toChannel,
-                    AsyncApiProcessor::merge));
+        reflections.getMethodsAnnotatedWith(AsyncApi.class)
+            .forEach(m -> process(m, asyncAPI));
+    }
+
+
+    private static void process(Method method, AsyncAPI asyncAPI) {
+
+        var channelName = getChannelName(method);
+
+        toChannel(channelName, method, asyncAPI);
     }
 
 
@@ -98,16 +112,10 @@ public class AsyncApiProcessor {
     }
 
 
-    private static ChannelItem toChannel(Method method) {
+    private static void toChannel(String channelName, Method method, AsyncAPI asyncAPI) {
 
         var annotation = method.getAnnotation(AsyncApi.class);
-
         var description = annotation.description();
-
-        var message = MessageUtil.process(annotation.payload());
-
-        var operation = new Operation();
-        operation.setMessage(message);
 
         var result = new ChannelItem();
 
@@ -117,17 +125,36 @@ public class AsyncApiProcessor {
 
         switch (annotation.type()) {
             case PUBLISHER:
-                result.setSubscribe(operation);
+                toOperation("subscribe", channelName, result::setSubscribe, annotation.payload(), asyncAPI);
                 break;
 
             case LISTENER:
-                result.setPublish(operation);
+                toOperation("publish", channelName, result::setPublish, annotation.payload(), asyncAPI);
                 break;
 
             default:
                 throw new IllegalStateException("Unexpected value: " + annotation.type());
         }
 
-        return result;
+        var channels = asyncAPI.getChannels();
+
+        if (channels.containsKey(channelName)) {
+            result = merge(channels.get(channelName), result);
+        }
+
+        channels.put(channelName, result);
+    }
+
+
+    private static void toOperation(String asyncApiType, String channelName, Consumer<Operation> operationConsumer,
+        Class<?> payload, AsyncAPI asyncAPI) {
+
+        var messageName = String.format("%s-%s", channelName, asyncApiType);
+
+        var reference = MessageUtil.process(payload, asyncAPI);
+
+        var operation = new Operation();
+        operation.setMessage(reference);
+        operationConsumer.accept(operation);
     }
 }

@@ -16,7 +16,6 @@ class IntegerTest {
     void testField() {
 
         var fieldSchema = new Schema();
-        fieldSchema.setTitle("field");
         fieldSchema.setType("integer");
         fieldSchema.setFormat("int32");
         fieldSchema.setExamples(List.of(42, 352));

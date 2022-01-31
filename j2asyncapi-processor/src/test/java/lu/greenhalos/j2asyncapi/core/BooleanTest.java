@@ -16,7 +16,6 @@ class BooleanTest {
     void testField() {
 
         var fieldSchema = new Schema();
-        fieldSchema.setTitle("field");
         fieldSchema.setType("boolean");
         fieldSchema.setFormat(null);
         fieldSchema.setExamples(List.of(true, false));

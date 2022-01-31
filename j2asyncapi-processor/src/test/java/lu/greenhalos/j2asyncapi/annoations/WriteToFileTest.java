@@ -32,12 +32,11 @@ public class WriteToFileTest {
     @Test
     void generate() throws IOException {
 
-        var subscribers = AsyncApiProcessor.process(ExampleBaseApplication.class);
-
         var asyncAPI = new AsyncAPI();
         asyncAPI.setInfo(info());
         asyncAPI.setServers(servers());
-        asyncAPI.setChannels(subscribers);
+
+        AsyncApiProcessor.process(ExampleBaseApplication.class, asyncAPI);
         writeToFile(asyncAPI);
     }
 

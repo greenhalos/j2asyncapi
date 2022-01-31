@@ -19,7 +19,6 @@ class FieldFormatTest {
     void testField() {
 
         var fieldSchema = new Schema();
-        fieldSchema.setTitle("field");
         fieldSchema.setType("string");
         fieldSchema.setFormat("flapping");
         fieldSchema.setExamples(List.of("blah", "blub"));

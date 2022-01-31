@@ -16,39 +16,50 @@ channels:
     description: "Description explaining exactly what happens here"
     subscribe:
       message:
-        payload:
-          properties:
-            amount:
-              title: "amount"
-              examples:
-              - 42.42
-              - 352.01
-              type: "number"
-              format: "float"
-            currency:
-              title: "currency"
-              examples:
-              - 42
-              - 352
-              type: "integer"
-              format: "int32"
-        title: "lu.greenhalos.j2asyncapi.annoations.example.publisher.ExamplePublisher$ExamplePublisherMessage"
+        $ref: "#/components/messages/lu.greenhalos.j2asyncapi.annoations.example.publisher.ExamplePublisher$ExamplePublisherMessage"
     publish:
       message:
-        payload:
-          properties:
-            amount:
-              title: "amount"
-              examples:
-              - 42.42
-              - 352.01
-              type: "number"
-              format: "float"
-            currency:
-              title: "currency"
-              examples:
-              - "EUR"
-              - "USD"
-              - "CHF"
-              type: "string"
-        title: "lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ExampleListenerMessage"
+        $ref: "#/components/messages/lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ExampleListenerMessage"
+components:
+  schemas:
+    java.lang.Integer-decfea64:
+      examples:
+      - 42
+      - 352
+      type: "integer"
+      format: "int32"
+    lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ExampleListenerMessage:
+      title: "ExampleListenerMessage"
+      properties:
+        amount:
+          $ref: "#/components/schemas/java.math.BigDecimal-dbc8e12d"
+        currency:
+          $ref: "#/components/schemas/java.lang.String-931073f3"
+    java.lang.String-931073f3:
+      examples:
+      - "EUR"
+      - "USD"
+      - "CHF"
+      type: "string"
+    java.math.BigDecimal-dbc8e12d:
+      examples:
+      - 42.42
+      - 352.01
+      type: "number"
+      format: "float"
+    lu.greenhalos.j2asyncapi.annoations.example.publisher.ExamplePublisher$ExamplePublisherMessage:
+      title: "ExamplePublisherMessage"
+      properties:
+        amount:
+          $ref: "#/components/schemas/java.math.BigDecimal-dbc8e12d"
+        currency:
+          $ref: "#/components/schemas/java.lang.Integer-decfea64"
+  messages:
+    lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ExampleListenerMessage:
+      payload:
+        $ref: "#/components/schemas/lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ExampleListenerMessage"
+      title: "lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ExampleListenerMessage"
+    lu.greenhalos.j2asyncapi.annoations.example.publisher.ExamplePublisher$ExamplePublisherMessage:
+      payload:
+        $ref: "#/components/schemas/lu.greenhalos.j2asyncapi.annoations.example.publisher.ExamplePublisher$ExamplePublisherMessage"
+      title: "lu.greenhalos.j2asyncapi.annoations.example.publisher.ExamplePublisher$ExamplePublisherMessage"

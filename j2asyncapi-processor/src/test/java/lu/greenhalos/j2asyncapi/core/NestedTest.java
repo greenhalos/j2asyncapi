@@ -16,20 +16,35 @@ class NestedTest {
     @Test
     void testField() {
 
-        var field2Schema = new Schema();
-        field2Schema.setTitle("field2");
-        field2Schema.setType("string");
-        field2Schema.setFormat(null);
-        field2Schema.setExamples(List.of("blah", "blub"));
+        var stringSchema = new Schema();
+        stringSchema.setType("string");
+        stringSchema.setFormat(null);
+        stringSchema.setExamples(List.of("blah", "blub"));
+
+        var nestedSchemaReference = new Schema();
+        nestedSchemaReference.setRef("#/components/schemas/java.lang.String-216cb264");
+
+        var nestedSchema = new Schema();
+        nestedSchema.setTitle("Nested");
+        nestedSchema.setProperties(Map.of("field2", nestedSchemaReference));
+
+        var field2Reference = new Schema();
+        field2Reference.setRef("#/components/schemas/lu.greenhalos.j2asyncapi.core.NestedTest$Nested");
 
         var fieldSchema = new Schema();
-        fieldSchema.setTitle("field");
+        fieldSchema.setTitle("Example");
         fieldSchema.setType(null);
         fieldSchema.setFormat(null);
         fieldSchema.setExamples(null);
-        fieldSchema.setProperties(Map.of("field2", field2Schema));
+        fieldSchema.setProperties(Map.of("field", field2Reference));
 
-        FieldTestUtil.assertSchemaOnClass(Example.class, fieldSchema);
+        var expectedSchemasForField = Map.of( //
+                "java.lang.String-216cb264", stringSchema, //
+                "lu.greenhalos.j2asyncapi.core.NestedTest$Example", fieldSchema, //
+                "lu.greenhalos.j2asyncapi.core.NestedTest$Nested", nestedSchema //
+                );
+
+        FieldTestUtil.assertSchemaOnClass(Example.class, expectedSchemasForField, fieldSchema.hashCode());
     }
 
     private static class Example {

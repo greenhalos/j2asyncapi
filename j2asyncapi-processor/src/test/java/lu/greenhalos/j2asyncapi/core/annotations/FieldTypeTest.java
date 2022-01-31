@@ -8,6 +8,7 @@ import lu.greenhalos.j2asyncapi.core.FieldTestUtil;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -19,12 +20,14 @@ class FieldTypeTest {
     void testField() {
 
         var fieldSchema = new Schema();
-        fieldSchema.setTitle("field");
         fieldSchema.setType("integer");
         fieldSchema.setFormat("int32");
         fieldSchema.setExamples(List.of(42, 352));
 
-        FieldTestUtil.assertSchemaOnClass(Example.class, fieldSchema);
+        var expectedSchemasForField = Map.of("java.lang.Integer-decfea64", fieldSchema);
+
+        FieldTestUtil.assertSchemaOnClass(Example.class, expectedSchemasForField, Integer.class,
+            fieldSchema.hashCode());
     }
 
     private static class Example {

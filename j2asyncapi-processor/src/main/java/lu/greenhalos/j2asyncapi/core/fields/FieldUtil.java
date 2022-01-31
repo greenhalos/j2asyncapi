@@ -1,9 +1,10 @@
 package lu.greenhalos.j2asyncapi.core.fields;
 
+import com.asyncapi.v2.model.AsyncAPI;
+import com.asyncapi.v2.model.Reference;
 import com.asyncapi.v2.model.schema.Schema;
 
 import lu.greenhalos.j2asyncapi.annotations.AsyncApi;
-import lu.greenhalos.j2asyncapi.core.ClassUtil;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,60 +28,44 @@ public class FieldUtil {
             new BooleanFieldType(), new DecimalNumberFieldType(), new ListFieldType(), new EnumFieldType(),
             new DateFieldType(), new DateTimeFieldType());
 
-    public static Schema process(Field field) {
+    public static boolean isRawType(Class<?> targetClass) {
 
-        return process(field, field.getType());
+        return FIELD_TYPES.stream().anyMatch(ft -> ft.canHandle(targetClass));
     }
 
 
-    public static Schema process(@Nullable Field field, Class<?> originalFieldType) {
+    public static Reference process(Class<?> originalTargetClass, AsyncAPI asyncAPI, @Nullable Field field) {
 
-        if (field == null) {
-            LOG.info("Start processing field of type {}", originalFieldType);
+        Class<?> targetClass;
+
+        if (field != null && field.isAnnotationPresent(AsyncApi.Field.class)
+                && field.getAnnotation(AsyncApi.Field.class).type() != Void.class) {
+            targetClass = field.getAnnotation(AsyncApi.Field.class).type();
         } else {
-            if (java.lang.reflect.Modifier.isStatic(field.getModifiers())) {
-                return null;
-            }
-
-            LOG.info("Start processing field {} with type {}", field.getName(), originalFieldType);
+            targetClass = originalTargetClass;
         }
 
-        AsyncApi.Field fieldAnnotation;
+        var schema = FIELD_TYPES.stream()
+                .filter(fieldType -> fieldType.canHandle(targetClass))
+                .findFirst()
+                .map(fieldType -> toSchema(field, fieldType, asyncAPI))
+                .orElseThrow(() -> new IllegalArgumentException(""));
 
-        if (field != null && field.isAnnotationPresent(AsyncApi.Field.class)) {
-            fieldAnnotation = field.getAnnotation(AsyncApi.Field.class);
-        } else {
-            fieldAnnotation = null;
-        }
+        var schemaName = String.format("%s-%x", targetClass.getName(), schema.hashCode());
+        asyncAPI.getComponents().getSchemas().put(schemaName, schema);
 
-        Class<?> finalFieldType;
-
-        if (fieldAnnotation != null && fieldAnnotation.type() != Void.class) {
-            finalFieldType = fieldAnnotation.type();
-        } else {
-            finalFieldType = originalFieldType;
-        }
-
-        return FIELD_TYPES.stream()
-            .filter(fieldType -> fieldType.canHandle(finalFieldType))
-            .findFirst()
-            .map(fieldType -> toSchema(field, fieldType, fieldAnnotation))
-            .orElseGet(() -> {
-                if (field != null) {
-                    return ClassUtil.process(originalFieldType, field.getName());
-                } else {
-                    return ClassUtil.process(originalFieldType, null);
-                }
-            });
+        return new Reference(String.format("#/components/schemas/%s", schemaName));
     }
 
 
-    private static Schema toSchema(@Nullable Field field, FieldType fieldType, AsyncApi.Field fieldAnnotation) {
+    private static Schema toSchema(@Nullable Field field, FieldType fieldType, AsyncAPI asyncAPI) {
 
         var fieldSchema = new Schema();
 
+        AsyncApi.Field fieldAnnotation = null;
+
         if (field != null) {
-            fieldSchema.setTitle(field.getName());
+            fieldAnnotation = field.getAnnotation(AsyncApi.Field.class);
         }
 
         fieldSchema.setType(fieldType.getType(field));
@@ -97,7 +82,7 @@ public class FieldUtil {
             fieldSchema.setExamples(fieldType.getExamples(field));
         }
 
-        fieldType.handleAdditionally(field, fieldSchema);
+        fieldType.handleAdditionally(field, fieldSchema, asyncAPI);
 
         return fieldSchema;
     }

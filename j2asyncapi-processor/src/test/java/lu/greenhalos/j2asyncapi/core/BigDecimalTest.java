@@ -18,7 +18,6 @@ class BigDecimalTest {
     void testField() {
 
         var fieldSchema = new Schema();
-        fieldSchema.setTitle("field");
         fieldSchema.setType("number");
         fieldSchema.setFormat("float");
         fieldSchema.setExamples(List.of(42.42, 352.01));

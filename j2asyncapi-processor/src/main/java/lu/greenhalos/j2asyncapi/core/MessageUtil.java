@@ -1,7 +1,8 @@
 package lu.greenhalos.j2asyncapi.core;
 
+import com.asyncapi.v2.model.AsyncAPI;
+import com.asyncapi.v2.model.Reference;
 import com.asyncapi.v2.model.channel.message.Message;
-import com.asyncapi.v2.model.schema.Schema;
 
 
 /**
@@ -9,14 +10,16 @@ import com.asyncapi.v2.model.schema.Schema;
  */
 public class MessageUtil {
 
-    public static Message process(Class<?> targetClass) {
+    public static Reference process(Class<?> targetClass, AsyncAPI asyncAPI) {
 
-        Schema payload = ClassUtil.process(targetClass);
+        var payload = ClassUtil.process(targetClass, asyncAPI);
 
         var result = new Message();
         result.setTitle(targetClass.getName());
         result.setPayload(payload);
 
-        return result;
+        asyncAPI.getComponents().getMessages().put(targetClass.getName(), result);
+
+        return new Reference(String.format("#/components/messages/%s", targetClass.getName()));
     }
 }

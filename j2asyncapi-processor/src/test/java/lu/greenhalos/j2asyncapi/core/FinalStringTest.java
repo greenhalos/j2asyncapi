@@ -16,7 +16,6 @@ class FinalStringTest {
     void testField() {
 
         var fieldSchema = new Schema();
-        fieldSchema.setTitle("field");
         fieldSchema.setType("string");
         fieldSchema.setFormat(null);
         fieldSchema.setExamples(List.of("blah", "blub"));
