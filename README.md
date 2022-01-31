@@ -60,4 +60,5 @@ class Listener {
 * Empty body
 * anonymous queue
 * process java.util.Locale
+* Statistics about schemas
 
