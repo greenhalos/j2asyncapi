@@ -34,6 +34,13 @@ channels:
               - 352
               type: "integer"
               format: "int32"
+            exampleLocalDateTime:
+              title: "exampleLocalDateTime"
+              examples:
+              - "2022-01-31T23:20:50.52Z"
+              - "1985-04-12T15:59:55-08:00"
+              type: "string"
+              format: "date-time"
             innerExample:
               title: "innerExample"
               properties:
@@ -85,6 +92,13 @@ channels:
               - 352.01
               type: "number"
               format: "double"
+            exampleInstant:
+              title: "exampleInstant"
+              examples:
+              - "2022-01-31T23:20:50.52Z"
+              - "1985-04-12T15:59:55-08:00"
+              type: "string"
+              format: "date-time"
             floatingAmount:
               title: "floatingAmount"
               examples:

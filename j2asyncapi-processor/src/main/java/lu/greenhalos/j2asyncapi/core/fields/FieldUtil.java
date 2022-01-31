@@ -25,7 +25,7 @@ public class FieldUtil {
 
     private static final List<FieldType> FIELD_TYPES = List.of(new NumberFieldType(), new StringFieldType(),
             new BooleanFieldType(), new DecimalNumberFieldType(), new ListFieldType(), new EnumFieldType(),
-            new DateFieldType());
+            new DateFieldType(), new DateTimeFieldType());
 
     public static Schema process(Field field) {
 
