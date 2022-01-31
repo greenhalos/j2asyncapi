@@ -20,8 +20,8 @@ import org.slf4j.LoggerFactory;
 import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Method;
 
-import java.util.HashMap;
 import java.util.Objects;
+import java.util.TreeMap;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Stream;
@@ -41,10 +41,10 @@ public class AsyncApiProcessor {
 
         // Prepare asyncAPI
         var components = new Components();
-        components.setMessages(new HashMap<>());
-        components.setSchemas(new HashMap<>());
+        components.setMessages(new TreeMap<>(String::compareTo));
+        components.setSchemas(new TreeMap<>(String::compareTo));
 
-        asyncAPI.setChannels(new HashMap<>());
+        asyncAPI.setChannels(new TreeMap<>(String::compareTo));
         asyncAPI.setComponents(components);
 
         Reflections reflections = new Reflections(new ConfigurationBuilder().forPackage(packageName)

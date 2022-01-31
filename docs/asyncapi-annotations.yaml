@@ -28,13 +28,6 @@ components:
       - 352
       type: "integer"
       format: "int32"
-    lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ExampleListenerMessage:
-      title: "ExampleListenerMessage"
-      properties:
-        amount:
-          $ref: "#/components/schemas/java.math.BigDecimal-dbc8e12d"
-        currency:
-          $ref: "#/components/schemas/java.lang.String-931073f3"
     java.lang.String-931073f3:
       examples:
       - "EUR"
@@ -47,6 +40,13 @@ components:
       - 352.01
       type: "number"
       format: "float"
+    lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ExampleListenerMessage:
+      title: "ExampleListenerMessage"
+      properties:
+        amount:
+          $ref: "#/components/schemas/java.math.BigDecimal-dbc8e12d"
+        currency:
+          $ref: "#/components/schemas/java.lang.String-931073f3"
     lu.greenhalos.j2asyncapi.annoations.example.publisher.ExamplePublisher$ExamplePublisherMessage:
       title: "ExamplePublisherMessage"
       properties:
