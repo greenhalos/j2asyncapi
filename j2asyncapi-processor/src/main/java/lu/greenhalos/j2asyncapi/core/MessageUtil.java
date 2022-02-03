@@ -5,6 +5,8 @@ import com.asyncapi.v2.model.channel.message.Message;
 
 import lu.greenhalos.j2asyncapi.annotations.AsyncApi;
 
+import static lu.greenhalos.j2asyncapi.core.ClassNameUtil.name;
+
 
 /**
  * @author  Ben Antony - antony@greenhalos.lu
@@ -24,8 +26,8 @@ public class MessageUtil {
             result.setDescription(annotation.description());
         }
 
-        config.asyncAPI.getComponents().getMessages().put(targetClass.getName(), result);
+        config.asyncAPI.getComponents().getMessages().put(name(targetClass), result);
 
-        return new Reference(String.format("#/components/messages/%s", targetClass.getName()));
+        return new Reference(String.format("#/components/messages/%s", name(targetClass)));
     }
 }

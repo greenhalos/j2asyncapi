@@ -15,6 +15,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import static lu.greenhalos.j2asyncapi.core.ClassNameUtil.name;
+
 import static java.lang.reflect.Modifier.isStatic;
 
 
@@ -42,12 +44,12 @@ public class ClassUtil {
     private static Reference process(@Nullable Field field, Class<?> targetClass, Config config) {
 
         if (FieldUtil.isRawType(targetClass, config)) {
-            LOG.info("{} is a raw type", targetClass.getName());
+            LOG.info("{} is a raw type", name(targetClass));
 
             return FieldUtil.process(targetClass, field, config);
         }
 
-        LOG.info("{} is not a raw type", targetClass.getName());
+        LOG.info("{} is not a raw type", name(targetClass));
 
         var properties = new HashMap<String, Schema>();
 
@@ -68,9 +70,9 @@ public class ClassUtil {
         schema.setTitle(targetClass.getSimpleName());
         schema.setProperties(properties);
 
-        config.asyncAPI.getComponents().getSchemas().put(targetClass.getName(), schema);
+        config.asyncAPI.getComponents().getSchemas().put(name(targetClass), schema);
 
-        return new Reference(String.format("#/components/schemas/%s", targetClass.getName()));
+        return new Reference(String.format("#/components/schemas/%s", name(targetClass)));
     }
 
 

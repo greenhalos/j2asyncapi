@@ -12,6 +12,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import static lu.greenhalos.j2asyncapi.core.ClassNameUtil.name;
+
 
 /**
  * @author  Ben Antony - antony@greenhalos.lu
@@ -41,7 +43,7 @@ public class FieldUtil {
                 .map(fieldType -> toSchema(field, fieldType, config))
                 .orElseThrow(() -> new IllegalArgumentException(""));
 
-        var schemaName = String.format("%s-%x", targetClass.getName(), schema.hashCode());
+        var schemaName = String.format("%s-%x", name(targetClass), schema.hashCode());
         config.asyncAPI.getComponents().getSchemas().put(schemaName, schema);
 
         return new Reference(String.format("#/components/schemas/%s", schemaName));

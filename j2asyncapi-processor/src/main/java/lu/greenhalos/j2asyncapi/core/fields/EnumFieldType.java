@@ -10,6 +10,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import static lu.greenhalos.j2asyncapi.core.ClassNameUtil.name;
+
 import static java.util.stream.Collectors.toList;
 
 
@@ -21,7 +23,7 @@ public class EnumFieldType implements FieldType {
     @Override
     public List<Class<?>> getAllowedClasses() {
 
-        throw new UnsupportedOperationException(EnumFieldType.class.getName()
+        throw new UnsupportedOperationException(name(EnumFieldType.class)
             + " handels canHandle(Class<?>) differently. getAllowedClasses is not implemented");
     }
 
