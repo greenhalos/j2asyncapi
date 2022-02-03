@@ -17,7 +17,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
-import java.lang.reflect.Method;
 
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -40,16 +39,9 @@ public class AsyncApiProcessor {
         Reflections reflections = new Reflections(new ConfigurationBuilder().forPackage(packageName)
                 .setScanners(Scanners.SubTypes, Scanners.MethodsAnnotated));
 
-        reflections.getMethodsAnnotatedWith(AsyncApi.class)
-            .forEach(m -> process(m, config));
-    }
-
-
-    private static void process(Method method, Config config) {
-
-        var channelName = getChannelName(method);
-
-        toChannel(channelName, method, config);
+        reflections.getMethodsAnnotatedWith(AsyncApi.class).stream()
+            .map(m -> m.getAnnotation(AsyncApi.class))
+            .forEach(a -> toChannel(getChannelName(a), a, config));
     }
 
 
@@ -88,9 +80,8 @@ public class AsyncApiProcessor {
     }
 
 
-    private static String getChannelName(Method method) {
+    private static String getChannelName(AsyncApi annotation) {
 
-        var annotation = method.getAnnotation(AsyncApi.class);
         var exchange = annotation.exchange();
         var routingKey = annotation.routingKey();
 
@@ -102,9 +93,8 @@ public class AsyncApiProcessor {
     }
 
 
-    private static void toChannel(String channelName, Method method, Config config) {
+    private static void toChannel(String channelName, AsyncApi annotation, Config config) {
 
-        var annotation = method.getAnnotation(AsyncApi.class);
         var description = annotation.description();
 
         var result = new ChannelItem();
