@@ -27,7 +27,7 @@ RabbitMQ Server
 
 Publish information
 
-#### Message lu.greenhalos.j2asyncapi.core.WriteToFileTest$Example `lu.greenhalos.j2asyncapi.core.WriteToFileTest$Example`
+#### Message Example `lu.greenhalos.j2asyncapi.core.WriteToFileTest$Example`
 
 ##### Payload
 

@@ -85,13 +85,13 @@ components:
     java.lang.Void:
       payload:
         $ref: "#/components/schemas/java.lang.Void"
-      title: "java.lang.Void"
+      title: "Void"
     lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ExampleListenerMessage:
       payload:
         $ref: "#/components/schemas/lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ExampleListenerMessage"
-      title: "lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ExampleListenerMessage"
+      title: "ExampleListenerMessage"
     lu.greenhalos.j2asyncapi.annoations.example.publisher.ExamplePublisher$ExamplePublisherMessage:
       payload:
         $ref: "#/components/schemas/lu.greenhalos.j2asyncapi.annoations.example.publisher.ExamplePublisher$ExamplePublisherMessage"
-      title: "lu.greenhalos.j2asyncapi.annoations.example.publisher.ExamplePublisher$ExamplePublisherMessage"
+      title: "ExamplePublisherMessage"
       description: "this is a message which gets published"

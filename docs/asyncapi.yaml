@@ -146,4 +146,4 @@ components:
     lu.greenhalos.j2asyncapi.core.WriteToFileTest$Example:
       payload:
         $ref: "#/components/schemas/lu.greenhalos.j2asyncapi.core.WriteToFileTest$Example"
-      title: "lu.greenhalos.j2asyncapi.core.WriteToFileTest$Example"
+      title: "Example"

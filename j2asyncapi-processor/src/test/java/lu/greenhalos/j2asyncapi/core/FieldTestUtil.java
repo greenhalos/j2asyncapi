@@ -56,7 +56,7 @@ public final class FieldTestUtil {
 
         var message = new Message();
         message.setPayload(new Reference(String.format("#/components/schemas/%s", exampleClass.getName())));
-        message.setTitle(exampleClass.getName());
+        message.setTitle(exampleClass.getSimpleName());
 
         Map<String, Object> expectedMessages = Map.of(exampleClass.getName(), message);
         assertThat(config.asyncAPI.getComponents().getMessages()).usingRecursiveComparison()

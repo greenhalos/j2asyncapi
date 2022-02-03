@@ -16,7 +16,7 @@ public class MessageUtil {
         var payload = ClassUtil.process(targetClass, config);
 
         var result = new Message();
-        result.setTitle(targetClass.getName());
+        result.setTitle(targetClass.getSimpleName());
         result.setPayload(payload);
 
         if (targetClass.isAnnotationPresent(AsyncApi.Message.class)) {
