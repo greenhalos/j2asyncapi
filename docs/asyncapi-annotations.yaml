@@ -24,6 +24,14 @@ channels:
     publish:
       message:
         $ref: "#/components/messages/lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ExampleListenerMessage"
+  exchange/routing.key.multiple1:
+    subscribe:
+      message:
+        $ref: "#/components/messages/java.lang.Void"
+  exchange/routing.key.multiple2:
+    subscribe:
+      message:
+        $ref: "#/components/messages/java.lang.Void"
 components:
   schemas:
     java.lang.Integer-decfea64:

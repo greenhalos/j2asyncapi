@@ -47,8 +47,10 @@ class AsyncApiProcessorTest {
 
         var expected = Map.of( //
                 "exchange/routing.key", channelItem, //
-                "exchange/queries", channelItemEmptyMessage //
+                "exchange/queries", channelItemEmptyMessage, //
+                "exchange/routing.key.multiple1", channelItemEmptyMessage, //
+                "exchange/routing.key.multiple2", channelItemEmptyMessage //
                 );
-        assertThat(asyncAPI.getChannels()).hasSize(2).usingRecursiveComparison().isEqualTo(expected);
+        assertThat(asyncAPI.getChannels()).usingRecursiveComparison().isEqualTo(expected);
     }
 }

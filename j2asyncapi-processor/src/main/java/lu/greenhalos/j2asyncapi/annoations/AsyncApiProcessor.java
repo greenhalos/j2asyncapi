@@ -4,6 +4,7 @@ import com.asyncapi.v2.model.channel.ChannelItem;
 import com.asyncapi.v2.model.channel.operation.Operation;
 
 import lu.greenhalos.j2asyncapi.annotations.AsyncApi;
+import lu.greenhalos.j2asyncapi.annotations.AsyncApis;
 import lu.greenhalos.j2asyncapi.core.Config;
 import lu.greenhalos.j2asyncapi.core.MessageUtil;
 
@@ -18,6 +19,7 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
 
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -41,6 +43,12 @@ public class AsyncApiProcessor {
 
         reflections.getMethodsAnnotatedWith(AsyncApi.class).stream()
             .map(m -> m.getAnnotation(AsyncApi.class))
+            .forEach(a -> toChannel(getChannelName(a), a, config));
+
+        reflections.getMethodsAnnotatedWith(AsyncApis.class).stream()
+            .map(m -> m.getAnnotation(AsyncApis.class))
+            .map(AsyncApis::value)
+            .flatMap(Arrays::stream)
             .forEach(a -> toChannel(getChannelName(a), a, config));
     }
 
