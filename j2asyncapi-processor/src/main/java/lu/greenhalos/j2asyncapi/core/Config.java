@@ -60,7 +60,7 @@ public class Config {
         private final List<FieldType> fieldTypes = new ArrayList<>(DEFAULT_FIELD_TYPES);
         private AsyncAPI asyncAPI;
 
-        public Builder addFieldType(FieldType fieldType) {
+        public Builder add(FieldType fieldType) {
 
             this.fieldTypes.add(fieldType);
 

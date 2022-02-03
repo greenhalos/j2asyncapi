@@ -39,7 +39,7 @@ class ConfigTest {
     void builder_addFieldType() {
 
         var result = Config.builder()
-                .addFieldType(new ExampleFieldType())
+                .add(new ExampleFieldType())
                 .build();
 
         assertThat(result.fieldTypes)
