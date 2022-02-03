@@ -47,6 +47,13 @@ components:
           $ref: "#/components/schemas/java.math.BigDecimal-dbc8e12d"
         currency:
           $ref: "#/components/schemas/java.lang.String-931073f3"
+        id:
+          $ref: "#/components/schemas/lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ObjectRepresentingAnId-d3e956cf"
+    lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ObjectRepresentingAnId-d3e956cf:
+      examples:
+      - "value1"
+      - "value42"
+      type: "string"
     lu.greenhalos.j2asyncapi.annoations.example.publisher.ExamplePublisher$ExamplePublisherMessage:
       title: "ExamplePublisherMessage"
       properties:

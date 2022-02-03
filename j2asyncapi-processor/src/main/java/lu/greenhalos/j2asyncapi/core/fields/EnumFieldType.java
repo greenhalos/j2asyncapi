@@ -3,6 +3,8 @@ package lu.greenhalos.j2asyncapi.core.fields;
 import com.asyncapi.v2.model.AsyncAPI;
 import com.asyncapi.v2.model.schema.Schema;
 
+import lu.greenhalos.j2asyncapi.core.Config;
+
 import java.lang.reflect.Field;
 
 import java.util.Arrays;
@@ -15,7 +17,7 @@ import static java.util.stream.Collectors.toList;
 /**
  * @author  Ben Antony - antony@greenhalos.lu
  */
-class EnumFieldType implements FieldType {
+public class EnumFieldType implements FieldType {
 
     @Override
     public List<Class<?>> getAllowedClasses() {
@@ -58,7 +60,7 @@ class EnumFieldType implements FieldType {
 
 
     @Override
-    public void handleAdditionally(Field field, Schema fieldSchema, AsyncAPI asyncAPI) {
+    public void handleAdditionally(Field field, Schema fieldSchema, AsyncAPI asyncAPI, Config config) {
 
         if (field == null) {
             return;

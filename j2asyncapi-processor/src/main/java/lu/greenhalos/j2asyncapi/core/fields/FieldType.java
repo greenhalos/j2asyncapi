@@ -3,6 +3,8 @@ package lu.greenhalos.j2asyncapi.core.fields;
 import com.asyncapi.v2.model.AsyncAPI;
 import com.asyncapi.v2.model.schema.Schema;
 
+import lu.greenhalos.j2asyncapi.core.Config;
+
 import java.lang.reflect.Field;
 
 import java.util.List;
@@ -13,7 +15,7 @@ import javax.annotation.Nullable;
 /**
  * @author  Ben Antony - antony@greenhalos.lu
  */
-interface FieldType {
+public interface FieldType {
 
     List<Class<?>> getAllowedClasses();
 
@@ -33,6 +35,6 @@ interface FieldType {
     String getFormat(@Nullable Field field);
 
 
-    default void handleAdditionally(@Nullable Field field, Schema fieldSchema, AsyncAPI asyncAPI) {
+    default void handleAdditionally(@Nullable Field field, Schema fieldSchema, AsyncAPI asyncAPI, Config config) {
     }
 }

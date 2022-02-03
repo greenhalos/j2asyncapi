@@ -4,6 +4,7 @@ import com.asyncapi.v2.model.AsyncAPI;
 import com.asyncapi.v2.model.schema.Schema;
 
 import lu.greenhalos.j2asyncapi.core.ClassUtil;
+import lu.greenhalos.j2asyncapi.core.Config;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
@@ -15,7 +16,7 @@ import java.util.Set;
 /**
  * @author  Ben Antony - antony@greenhalos.lu
  */
-class ListFieldType implements FieldType {
+public class ListFieldType implements FieldType {
 
     @Override
     public List<Class<?>> getAllowedClasses() {
@@ -46,7 +47,7 @@ class ListFieldType implements FieldType {
 
 
     @Override
-    public void handleAdditionally(Field field, Schema fieldSchema, AsyncAPI asyncAPI) {
+    public void handleAdditionally(Field field, Schema fieldSchema, AsyncAPI asyncAPI, Config config) {
 
         if (field == null) {
             return;
@@ -55,7 +56,7 @@ class ListFieldType implements FieldType {
         ParameterizedType listType = (ParameterizedType) field.getGenericType();
         Class<?> listItemClass = (Class<?>) listType.getActualTypeArguments()[0];
 
-        var items = ClassUtil.process(listItemClass, asyncAPI);
+        var items = ClassUtil.process(listItemClass, asyncAPI, config);
         fieldSchema.setItems(items);
     }
 }

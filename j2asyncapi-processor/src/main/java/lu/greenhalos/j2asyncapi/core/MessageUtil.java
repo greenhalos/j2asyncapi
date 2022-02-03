@@ -10,9 +10,9 @@ import com.asyncapi.v2.model.channel.message.Message;
  */
 public class MessageUtil {
 
-    public static Reference process(Class<?> targetClass, AsyncAPI asyncAPI) {
+    public static Reference process(Class<?> targetClass, AsyncAPI asyncAPI, Config config) {
 
-        var payload = ClassUtil.process(targetClass, asyncAPI);
+        var payload = ClassUtil.process(targetClass, asyncAPI, config);
 
         var result = new Message();
         result.setTitle(targetClass.getName());

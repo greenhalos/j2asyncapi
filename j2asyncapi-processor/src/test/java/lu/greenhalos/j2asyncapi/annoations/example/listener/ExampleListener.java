@@ -24,5 +24,16 @@ public class ExampleListener {
         public BigDecimal amount;
         @AsyncApi.Field(examples = { "EUR", "USD", "CHF" })
         public String currency;
+        public ObjectRepresentingAnId id;
+    }
+
+    public static class ObjectRepresentingAnId {
+
+        private final String value;
+
+        public ObjectRepresentingAnId(String value) {
+
+            this.value = value;
+        }
     }
 }

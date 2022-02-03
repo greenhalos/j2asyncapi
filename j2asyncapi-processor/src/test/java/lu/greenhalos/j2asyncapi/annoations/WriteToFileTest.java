@@ -11,6 +11,9 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator;
 
 import lu.greenhalos.j2asyncapi.annoations.example.ExampleBaseApplication;
+import lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener.ObjectRepresentingAnId;
+import lu.greenhalos.j2asyncapi.core.Config;
+import lu.greenhalos.j2asyncapi.core.fields.FieldType;
 
 import org.apache.commons.io.FileUtils;
 
@@ -19,7 +22,12 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.IOException;
 
+import java.lang.reflect.Field;
+
+import java.util.List;
 import java.util.Map;
+
+import javax.annotation.Nullable;
 
 
 /**
@@ -32,11 +40,13 @@ public class WriteToFileTest {
     @Test
     void generate() throws IOException {
 
+        var config = Config.builder().addFieldType(new ObjectRepresentingAnIdFieldType()).build();
+
         var asyncAPI = new AsyncAPI();
         asyncAPI.setInfo(info());
         asyncAPI.setServers(servers());
 
-        AsyncApiProcessor.process(ExampleBaseApplication.class, asyncAPI);
+        AsyncApiProcessor.process(ExampleBaseApplication.class, asyncAPI, config);
         writeToFile(asyncAPI);
     }
 
@@ -72,5 +82,35 @@ public class WriteToFileTest {
 
         var bytes = objectMapper.writeValueAsBytes(asyncAPI);
         FileUtils.writeByteArrayToFile(new File(DOCS_TARGET), bytes);
+    }
+
+    private static class ObjectRepresentingAnIdFieldType implements FieldType {
+
+        @Override
+        public List<Class<?>> getAllowedClasses() {
+
+            return List.of(ObjectRepresentingAnId.class);
+        }
+
+
+        @Override
+        public List<Object> getExamples(@Nullable Field field) {
+
+            return List.of("value1", "value42");
+        }
+
+
+        @Override
+        public String getType(@Nullable Field field) {
+
+            return "string";
+        }
+
+
+        @Override
+        public String getFormat(@Nullable Field field) {
+
+            return null;
+        }
     }
 }

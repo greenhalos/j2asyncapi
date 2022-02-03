@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author  Ben Antony - antony@greenhalos.lu
  */
-class DateFieldType implements FieldType {
+public class DateFieldType implements FieldType {
 
     @Override
     public List<Class<?>> getAllowedClasses() {

@@ -1,15 +1,12 @@
-package lu.greenhalos.j2asyncapi.core.fields;
+package lu.greenhalos.j2asyncapi.core;
 
 import com.asyncapi.v2.model.AsyncAPI;
 import com.asyncapi.v2.model.Reference;
 import com.asyncapi.v2.model.schema.Schema;
 
 import lu.greenhalos.j2asyncapi.annotations.AsyncApi;
+import lu.greenhalos.j2asyncapi.core.fields.FieldType;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Field;
 
 import java.util.List;
@@ -22,19 +19,14 @@ import javax.annotation.Nullable;
  */
 public class FieldUtil {
 
-    private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+    public static boolean isRawType(Class<?> targetClass, Config config) {
 
-    private static final List<FieldType> FIELD_TYPES = List.of(new NumberFieldType(), new StringFieldType(),
-            new BooleanFieldType(), new DecimalNumberFieldType(), new ListFieldType(), new EnumFieldType(),
-            new DateFieldType(), new DateTimeFieldType());
-
-    public static boolean isRawType(Class<?> targetClass) {
-
-        return FIELD_TYPES.stream().anyMatch(ft -> ft.canHandle(targetClass));
+        return config.fieldTypes.stream().anyMatch(ft -> ft.canHandle(targetClass));
     }
 
 
-    public static Reference process(Class<?> originalTargetClass, AsyncAPI asyncAPI, @Nullable Field field) {
+    public static Reference process(Class<?> originalTargetClass, AsyncAPI asyncAPI, @Nullable Field field,
+        Config config) {
 
         Class<?> targetClass;
 
@@ -45,10 +37,10 @@ public class FieldUtil {
             targetClass = originalTargetClass;
         }
 
-        var schema = FIELD_TYPES.stream()
+        var schema = config.fieldTypes.stream()
                 .filter(fieldType -> fieldType.canHandle(targetClass))
                 .findFirst()
-                .map(fieldType -> toSchema(field, fieldType, asyncAPI))
+                .map(fieldType -> toSchema(field, fieldType, asyncAPI, config))
                 .orElseThrow(() -> new IllegalArgumentException(""));
 
         var schemaName = String.format("%s-%x", targetClass.getName(), schema.hashCode());
@@ -58,7 +50,7 @@ public class FieldUtil {
     }
 
 
-    private static Schema toSchema(@Nullable Field field, FieldType fieldType, AsyncAPI asyncAPI) {
+    private static Schema toSchema(@Nullable Field field, FieldType fieldType, AsyncAPI asyncAPI, Config config) {
 
         var fieldSchema = new Schema();
 
@@ -82,7 +74,7 @@ public class FieldUtil {
             fieldSchema.setExamples(fieldType.getExamples(field));
         }
 
-        fieldType.handleAdditionally(field, fieldSchema, asyncAPI);
+        fieldType.handleAdditionally(field, fieldSchema, asyncAPI, config);
 
         return fieldSchema;
     }

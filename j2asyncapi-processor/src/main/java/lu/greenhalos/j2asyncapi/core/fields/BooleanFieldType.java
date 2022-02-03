@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * @author  Ben Antony - antony@greenhalos.lu
  */
-class BooleanFieldType implements FieldType {
+public class BooleanFieldType implements FieldType {
 
     @Override
     public List<Class<?>> getAllowedClasses() {

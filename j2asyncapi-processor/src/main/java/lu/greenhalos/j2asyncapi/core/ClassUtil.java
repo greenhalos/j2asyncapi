@@ -4,8 +4,6 @@ import com.asyncapi.v2.model.AsyncAPI;
 import com.asyncapi.v2.model.Reference;
 import com.asyncapi.v2.model.schema.Schema;
 
-import lu.greenhalos.j2asyncapi.core.fields.FieldUtil;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,26 +26,26 @@ public class ClassUtil {
 
     private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    public static Reference process(Class<?> targetClass, AsyncAPI asyncAPI) {
+    public static Reference process(Class<?> targetClass, AsyncAPI asyncAPI, Config config) {
 
-        return process(asyncAPI, null, targetClass);
+        return process(asyncAPI, null, targetClass, config);
     }
 
 
-    private static Reference process(Field field, AsyncAPI asyncAPI) {
+    private static Reference process(Field field, AsyncAPI asyncAPI, Config config) {
 
         Class<?> targetClass = field.getType();
 
-        return process(asyncAPI, field, targetClass);
+        return process(asyncAPI, field, targetClass, config);
     }
 
 
-    private static Reference process(AsyncAPI asyncAPI, @Nullable Field field, Class<?> targetClass) {
+    private static Reference process(AsyncAPI asyncAPI, @Nullable Field field, Class<?> targetClass, Config config) {
 
-        if (FieldUtil.isRawType(targetClass)) {
+        if (FieldUtil.isRawType(targetClass, config)) {
             LOG.info("{} is a raw type", targetClass.getName());
 
-            return FieldUtil.process(targetClass, asyncAPI, field);
+            return FieldUtil.process(targetClass, asyncAPI, field, config);
         }
 
         LOG.info("{} is not a raw type", targetClass.getName());
@@ -61,7 +59,7 @@ public class ClassUtil {
                 continue;
             }
 
-            var fieldSchema = ClassUtil.process(declaredField, asyncAPI);
+            var fieldSchema = ClassUtil.process(declaredField, asyncAPI, config);
             var schema = new Schema();
             schema.setRef(fieldSchema.getRef());
             properties.put(declaredField.getName(), schema);

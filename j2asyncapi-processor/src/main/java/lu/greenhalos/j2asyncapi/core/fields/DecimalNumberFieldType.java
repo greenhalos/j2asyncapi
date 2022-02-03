@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author  Ben Antony - antony@greenhalos.lu
  */
-class DecimalNumberFieldType implements FieldType {
+public class DecimalNumberFieldType implements FieldType {
 
     @Override
     public List<Class<?>> getAllowedClasses() {

@@ -15,6 +15,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static lu.greenhalos.j2asyncapi.core.Config.defaultConfig;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -57,10 +59,11 @@ public final class FieldTestUtil {
         AsyncAPI asyncAPI = new AsyncAPI();
         asyncAPI.setComponents(components);
 
-        // then
+        // when
         var messageReference = String.format("#/components/messages/%s", exampleClass.getName());
-        var reference = MessageUtil.process(exampleClass, asyncAPI);
+        var reference = MessageUtil.process(exampleClass, asyncAPI, defaultConfig());
 
+        // then
         assertThat(reference).usingRecursiveComparison().isEqualTo(new Reference(messageReference));
 
         var message = new Message();

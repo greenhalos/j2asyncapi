@@ -6,6 +6,7 @@ import com.asyncapi.v2.model.channel.operation.Operation;
 import com.asyncapi.v2.model.component.Components;
 
 import lu.greenhalos.j2asyncapi.annotations.AsyncApi;
+import lu.greenhalos.j2asyncapi.core.Config;
 import lu.greenhalos.j2asyncapi.core.MessageUtil;
 
 import org.reflections.Reflections;
@@ -34,7 +35,7 @@ public class AsyncApiProcessor {
 
     private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    public static void process(Class<?> baseClass, AsyncAPI asyncAPI) {
+    public static void process(Class<?> baseClass, AsyncAPI asyncAPI, Config config) {
 
         var packageName = baseClass.getPackageName();
         LOG.info("Start looking for AsyncApi annotations in package in {}", packageName);
@@ -51,15 +52,15 @@ public class AsyncApiProcessor {
                 .setScanners(Scanners.SubTypes, Scanners.MethodsAnnotated));
 
         reflections.getMethodsAnnotatedWith(AsyncApi.class)
-            .forEach(m -> process(m, asyncAPI));
+            .forEach(m -> process(m, asyncAPI, config));
     }
 
 
-    private static void process(Method method, AsyncAPI asyncAPI) {
+    private static void process(Method method, AsyncAPI asyncAPI, Config config) {
 
         var channelName = getChannelName(method);
 
-        toChannel(channelName, method, asyncAPI);
+        toChannel(channelName, method, asyncAPI, config);
     }
 
 
@@ -112,7 +113,7 @@ public class AsyncApiProcessor {
     }
 
 
-    private static void toChannel(String channelName, Method method, AsyncAPI asyncAPI) {
+    private static void toChannel(String channelName, Method method, AsyncAPI asyncAPI, Config config) {
 
         var annotation = method.getAnnotation(AsyncApi.class);
         var description = annotation.description();
@@ -125,11 +126,11 @@ public class AsyncApiProcessor {
 
         switch (annotation.type()) {
             case PUBLISHER:
-                toOperation("subscribe", channelName, result::setSubscribe, annotation.payload(), asyncAPI);
+                toOperation(result::setSubscribe, annotation.payload(), asyncAPI, config);
                 break;
 
             case LISTENER:
-                toOperation("publish", channelName, result::setPublish, annotation.payload(), asyncAPI);
+                toOperation(result::setPublish, annotation.payload(), asyncAPI, config);
                 break;
 
             default:
@@ -146,12 +147,10 @@ public class AsyncApiProcessor {
     }
 
 
-    private static void toOperation(String asyncApiType, String channelName, Consumer<Operation> operationConsumer,
-        Class<?> payload, AsyncAPI asyncAPI) {
+    private static void toOperation(Consumer<Operation> operationConsumer, Class<?> payload, AsyncAPI asyncAPI,
+        Config config) {
 
-        var messageName = String.format("%s-%s", channelName, asyncApiType);
-
-        var reference = MessageUtil.process(payload, asyncAPI);
+        var reference = MessageUtil.process(payload, asyncAPI, config);
 
         var operation = new Operation();
         operation.setMessage(reference);

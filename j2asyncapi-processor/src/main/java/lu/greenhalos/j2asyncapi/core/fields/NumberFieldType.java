@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * @author  Ben Antony - antony@greenhalos.lu
  */
-class NumberFieldType implements FieldType {
+public class NumberFieldType implements FieldType {
 
     @Override
     public List<Class<?>> getAllowedClasses() {
