@@ -45,4 +45,10 @@ public @interface AsyncApi {
 
         String format() default "";
     }
+
+    @Retention(RetentionPolicy.RUNTIME)
+    @interface Message {
+
+        String description() default "";
+    }
 }

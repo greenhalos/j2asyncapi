@@ -70,3 +70,4 @@ components:
       payload:
         $ref: "#/components/schemas/lu.greenhalos.j2asyncapi.annoations.example.publisher.ExamplePublisher$ExamplePublisherMessage"
       title: "lu.greenhalos.j2asyncapi.annoations.example.publisher.ExamplePublisher$ExamplePublisherMessage"
+      description: "this is a message which gets published"

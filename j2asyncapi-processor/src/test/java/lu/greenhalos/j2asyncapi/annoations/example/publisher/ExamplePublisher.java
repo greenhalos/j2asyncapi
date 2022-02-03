@@ -20,6 +20,7 @@ public class ExamplePublisher {
         System.out.println("publish the message ExampleListenerMessage");
     }
 
+    @AsyncApi.Message(description = "this is a message which gets published")
     public static class ExamplePublisherMessage {
 
         public BigDecimal amount;
