@@ -49,7 +49,8 @@ class AsyncApiProcessorTest {
                 "exchange/routing.key", channelItem, //
                 "exchange/queries", channelItemEmptyMessage, //
                 "exchange/routing.key.multiple1", channelItemEmptyMessage, //
-                "exchange/routing.key.multiple2", channelItemEmptyMessage //
+                "exchange/routing.key.multiple2", channelItemEmptyMessage, //
+                "routing.key.default.exchange", channelItemEmptyMessage //
                 );
         assertThat(asyncAPI.getChannels()).usingRecursiveComparison().isEqualTo(expected);
     }

@@ -43,13 +43,13 @@ public class AsyncApiProcessor {
 
         reflections.getMethodsAnnotatedWith(AsyncApi.class).stream()
             .map(m -> m.getAnnotation(AsyncApi.class))
-            .forEach(a -> toChannel(getChannelName(a), a, config));
+            .forEach(a -> toChannel(a, config));
 
         reflections.getMethodsAnnotatedWith(AsyncApis.class).stream()
             .map(m -> m.getAnnotation(AsyncApis.class))
             .map(AsyncApis::value)
             .flatMap(Arrays::stream)
-            .forEach(a -> toChannel(getChannelName(a), a, config));
+            .forEach(a -> toChannel(a, config));
     }
 
 
@@ -93,7 +93,7 @@ public class AsyncApiProcessor {
         var exchange = annotation.exchange();
         var routingKey = annotation.routingKey();
 
-        if (exchange != null) {
+        if (exchange != null && exchange.length() > 0 && !"/".equals(exchange)) {
             return String.format("%s/%s", exchange, routingKey);
         }
 
@@ -101,9 +101,10 @@ public class AsyncApiProcessor {
     }
 
 
-    private static void toChannel(String channelName, AsyncApi annotation, Config config) {
+    private static void toChannel(AsyncApi annotation, Config config) {
 
         var description = annotation.description();
+        var channelName = getChannelName(annotation);
 
         var result = new ChannelItem();
 

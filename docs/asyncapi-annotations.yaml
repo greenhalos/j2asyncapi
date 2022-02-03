@@ -32,6 +32,10 @@ channels:
     subscribe:
       message:
         $ref: "#/components/messages/java.lang.Void"
+  routing.key.default.exchange:
+    subscribe:
+      message:
+        $ref: "#/components/messages/java.lang.Void"
 components:
   schemas:
     java.lang.Integer-decfea64:

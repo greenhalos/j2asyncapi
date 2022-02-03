@@ -14,6 +14,7 @@
   * [SUB exchange/routing.key](#sub-exchangeroutingkey-operation)
   * [SUB exchange/routing.key.multiple1](#sub-exchangeroutingkeymultiple1-operation)
   * [SUB exchange/routing.key.multiple2](#sub-exchangeroutingkeymultiple2-operation)
+  * [SUB routing.key.default.exchange](#sub-routingkeydefaultexchange-operation)
 
 ## Servers
 
@@ -118,6 +119,24 @@ this is a message which gets published
 
 
 ### SUB `exchange/routing.key.multiple2` Operation
+
+#### Message java.lang.Void `java.lang.Void`
+
+##### Payload
+
+| Name | Type | Description | Value | Constraints | Notes |
+|---|---|---|---|---|---|
+| (root) | - | - | - | - | **additional properties are allowed** |
+
+> Examples of payload _(generated)_
+
+```json
+{}
+```
+
+
+
+### SUB `routing.key.default.exchange` Operation
 
 #### Message java.lang.Void `java.lang.Void`
 
