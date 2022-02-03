@@ -54,10 +54,10 @@ components:
       - 352
       type: "integer"
       format: "int64"
-    java.lang.String-216cb264:
+    java.lang.String-38af4fe9:
       examples:
-      - "blah"
-      - "blub"
+      - "Lorem"
+      - "ipsum"
       type: "string"
     java.math.BigDecimal-dbc8e12d:
       examples:
@@ -83,10 +83,10 @@ components:
       - "1985-04-12T15:59:55-08:00"
       type: "string"
       format: "date-time"
-    java.util.List-39a15bb0:
+    java.util.List-33eeac26:
       type: "array"
       items:
-        $ref: "#/components/schemas/java.lang.String-216cb264"
+        $ref: "#/components/schemas/java.lang.String-38af4fe9"
     lu.greenhalos.j2asyncapi.core.WriteToFileTest$Example:
       title: "Example"
       properties:
@@ -99,11 +99,11 @@ components:
         innerExample:
           $ref: "#/components/schemas/lu.greenhalos.j2asyncapi.core.WriteToFileTest$InnerExample"
         finalCurrency:
-          $ref: "#/components/schemas/java.lang.String-216cb264"
+          $ref: "#/components/schemas/java.lang.String-38af4fe9"
         listCurrency:
-          $ref: "#/components/schemas/java.util.List-39a15bb0"
+          $ref: "#/components/schemas/java.util.List-33eeac26"
         privateFinalCurrency:
-          $ref: "#/components/schemas/java.lang.String-216cb264"
+          $ref: "#/components/schemas/java.lang.String-38af4fe9"
         isFancy:
           $ref: "#/components/schemas/java.lang.Boolean-96239209"
         doubleAmount:
@@ -119,7 +119,7 @@ components:
         fieldAnnotation:
           $ref: "#/components/schemas/java.lang.Integer-c5a8ddd3"
         currency:
-          $ref: "#/components/schemas/java.lang.String-216cb264"
+          $ref: "#/components/schemas/java.lang.String-38af4fe9"
         longAmount:
           $ref: "#/components/schemas/java.lang.Long-dff9a141"
     lu.greenhalos.j2asyncapi.core.WriteToFileTest$ExampleEnum-f54df644:
@@ -134,14 +134,14 @@ components:
       title: "InnerExample"
       properties:
         innerCurrency:
-          $ref: "#/components/schemas/java.lang.String-216cb264"
+          $ref: "#/components/schemas/java.lang.String-38af4fe9"
         nestedInnerExample:
           $ref: "#/components/schemas/lu.greenhalos.j2asyncapi.core.WriteToFileTest$NestedInnerExample"
     lu.greenhalos.j2asyncapi.core.WriteToFileTest$NestedInnerExample:
       title: "NestedInnerExample"
       properties:
         nestedInnerCurrency:
-          $ref: "#/components/schemas/java.lang.String-216cb264"
+          $ref: "#/components/schemas/java.lang.String-38af4fe9"
   messages:
     lu.greenhalos.j2asyncapi.core.WriteToFileTest$Example:
       payload:

@@ -20,9 +20,9 @@ class CollectionListTest {
         var stringSchema = new Schema();
         stringSchema.setType("string");
         stringSchema.setFormat(null);
-        stringSchema.setExamples(List.of("blah", "blub"));
+        stringSchema.setExamples(List.of("Lorem", "ipsum"));
 
-        var itemSchema = new Reference("#/components/schemas/java.lang.String-216cb264");
+        var itemSchema = new Reference("#/components/schemas/java.lang.String-38af4fe9");
         var fieldSchema = new Schema();
         fieldSchema.setType("array");
         fieldSchema.setFormat(null);
@@ -30,8 +30,8 @@ class CollectionListTest {
         fieldSchema.setItems(itemSchema);
 
         var expectedSchemasForField = Map.of( //
-                "java.lang.String-216cb264", stringSchema, //
-                "java.util.List-39a15bb0", fieldSchema //
+                "java.lang.String-38af4fe9", stringSchema, //
+                "java.util.List-33eeac26", fieldSchema //
                 );
 
         FieldTestUtil.assertSchemaOnClass(Example.class, expectedSchemasForField, fieldSchema.hashCode());

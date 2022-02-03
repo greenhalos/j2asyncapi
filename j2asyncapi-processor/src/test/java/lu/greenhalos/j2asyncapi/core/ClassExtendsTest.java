@@ -18,7 +18,7 @@ class ClassExtendsTest {
         var fieldSchema = new Schema();
         fieldSchema.setType("string");
         fieldSchema.setFormat(null);
-        fieldSchema.setExamples(List.of("blah", "blub"));
+        fieldSchema.setExamples(List.of("Lorem", "ipsum"));
 
         FieldTestUtil.assertSchemaOnClass(Example.class, fieldSchema);
     }

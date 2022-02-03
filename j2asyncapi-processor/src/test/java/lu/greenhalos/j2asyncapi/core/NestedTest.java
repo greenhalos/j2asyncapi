@@ -19,10 +19,10 @@ class NestedTest {
         var stringSchema = new Schema();
         stringSchema.setType("string");
         stringSchema.setFormat(null);
-        stringSchema.setExamples(List.of("blah", "blub"));
+        stringSchema.setExamples(List.of("Lorem", "ipsum"));
 
         var nestedSchemaReference = new Schema();
-        nestedSchemaReference.setRef("#/components/schemas/java.lang.String-216cb264");
+        nestedSchemaReference.setRef("#/components/schemas/java.lang.String-38af4fe9");
 
         var nestedSchema = new Schema();
         nestedSchema.setTitle("Nested");
@@ -39,7 +39,7 @@ class NestedTest {
         fieldSchema.setProperties(Map.of("field", field2Reference));
 
         var expectedSchemasForField = Map.of( //
-                "java.lang.String-216cb264", stringSchema, //
+                "java.lang.String-38af4fe9", stringSchema, //
                 "lu.greenhalos.j2asyncapi.core.NestedTest$Example", fieldSchema, //
                 "lu.greenhalos.j2asyncapi.core.NestedTest$Nested", nestedSchema //
                 );

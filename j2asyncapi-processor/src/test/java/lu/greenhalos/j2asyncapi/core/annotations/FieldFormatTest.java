@@ -21,7 +21,7 @@ class FieldFormatTest {
         var fieldSchema = new Schema();
         fieldSchema.setType("string");
         fieldSchema.setFormat("flapping");
-        fieldSchema.setExamples(List.of("blah", "blub"));
+        fieldSchema.setExamples(List.of("Lorem", "ipsum"));
 
         FieldTestUtil.assertSchemaOnClass(Example.class, fieldSchema);
     }

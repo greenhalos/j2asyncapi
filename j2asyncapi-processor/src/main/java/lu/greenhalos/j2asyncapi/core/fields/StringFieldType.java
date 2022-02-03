@@ -20,7 +20,7 @@ public class StringFieldType implements FieldType {
     @Override
     public List<Object> getExamples(Field field) {
 
-        return List.of("blah", "blub");
+        return List.of("Lorem", "ipsum");
     }
 
 
