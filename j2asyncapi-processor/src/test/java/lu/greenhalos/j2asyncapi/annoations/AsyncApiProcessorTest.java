@@ -1,6 +1,7 @@
 package lu.greenhalos.j2asyncapi.annoations;
 
 import com.asyncapi.v2.model.AsyncAPI;
+import com.asyncapi.v2.model.Reference;
 import com.asyncapi.v2.model.channel.ChannelItem;
 import com.asyncapi.v2.model.channel.operation.Operation;
 
@@ -38,7 +39,16 @@ class AsyncApiProcessorTest {
         channelItem.setPublish(publisher);
         channelItem.setDescription("Description explaining exactly what happens here");
 
-        var expected = Map.of("exchange/routing.key", channelItem);
-        assertThat(asyncAPI.getChannels()).hasSize(1).usingRecursiveComparison().isEqualTo(expected);
+        Operation subscriberEmptyMessage = new Operation();
+        subscriberEmptyMessage.setMessage(new Reference("#/components/messages/java.lang.Void"));
+
+        var channelItemEmptyMessage = new ChannelItem();
+        channelItemEmptyMessage.setSubscribe(subscriberEmptyMessage);
+
+        var expected = Map.of( //
+                "exchange/routing.key", channelItem, //
+                "exchange/queries", channelItemEmptyMessage //
+                );
+        assertThat(asyncAPI.getChannels()).hasSize(2).usingRecursiveComparison().isEqualTo(expected);
     }
 }

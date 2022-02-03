@@ -28,7 +28,7 @@ public @interface AsyncApi {
     String routingKey();
 
 
-    Class<?> payload();
+    Class<?> payload() default Void.class;
 
 
     String description() default "";

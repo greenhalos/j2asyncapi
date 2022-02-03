@@ -12,6 +12,10 @@ servers:
     protocol: "amqp"
     description: "RabbitMQ Server"
 channels:
+  exchange/queries:
+    subscribe:
+      message:
+        $ref: "#/components/messages/java.lang.Void"
   exchange/routing.key:
     description: "Description explaining exactly what happens here"
     subscribe:
@@ -34,6 +38,9 @@ components:
       - "USD"
       - "CHF"
       type: "string"
+    java.lang.Void:
+      title: "Void"
+      properties: {}
     java.math.BigDecimal-dbc8e12d:
       examples:
       - 42.42
@@ -62,6 +69,10 @@ components:
         currency:
           $ref: "#/components/schemas/java.lang.Integer-decfea64"
   messages:
+    java.lang.Void:
+      payload:
+        $ref: "#/components/schemas/java.lang.Void"
+      title: "java.lang.Void"
     lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ExampleListenerMessage:
       payload:
         $ref: "#/components/schemas/lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ExampleListenerMessage"

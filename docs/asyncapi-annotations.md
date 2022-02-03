@@ -9,6 +9,7 @@
 * [Servers](#servers)
   * [test](#test-server)
 * [Operations](#operations)
+  * [SUB exchange/queries](#sub-exchangequeries-operation)
   * [PUB exchange/routing.key](#pub-exchangeroutingkey-operation)
   * [SUB exchange/routing.key](#sub-exchangeroutingkey-operation)
 
@@ -23,6 +24,24 @@ RabbitMQ Server
 
 
 ## Operations
+
+### SUB `exchange/queries` Operation
+
+#### Message java.lang.Void `java.lang.Void`
+
+##### Payload
+
+| Name | Type | Description | Value | Constraints | Notes |
+|---|---|---|---|---|---|
+| (root) | - | - | - | - | **additional properties are allowed** |
+
+> Examples of payload _(generated)_
+
+```json
+{}
+```
+
+
 
 ### PUB `exchange/routing.key` Operation
 
