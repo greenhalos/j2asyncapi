@@ -38,13 +38,13 @@ Publish information
 | intAmount | integer | - | examples (`42`, `352`) | format (`int32`) | - |
 | exampleLocalDateTime | string | - | examples (`"2022-01-31T23:20:50.52Z"`, `"1985-04-12T15:59:55-08:00"`) | format (`date-time`) | - |
 | innerExample | - | - | - | - | **additional properties are allowed** |
-| innerExample.innerCurrency | string | - | examples (`"blah"`, `"blub"`) | - | - |
+| innerExample.innerCurrency | string | - | examples (`"Lorem"`, `"ipsum"`) | - | - |
 | innerExample.nestedInnerExample | - | - | - | - | **additional properties are allowed** |
-| innerExample.nestedInnerExample.nestedInnerCurrency | string | - | examples (`"blah"`, `"blub"`) | - | - |
-| finalCurrency | string | - | examples (`"blah"`, `"blub"`) | - | - |
+| innerExample.nestedInnerExample.nestedInnerCurrency | string | - | examples (`"Lorem"`, `"ipsum"`) | - | - |
+| finalCurrency | string | - | examples (`"Lorem"`, `"ipsum"`) | - | - |
 | listCurrency | array<string> | - | - | - | - |
-| listCurrency (single item) | string | - | examples (`"blah"`, `"blub"`) | - | - |
-| privateFinalCurrency | string | - | examples (`"blah"`, `"blub"`) | - | - |
+| listCurrency (single item) | string | - | examples (`"Lorem"`, `"ipsum"`) | - | - |
+| privateFinalCurrency | string | - | examples (`"Lorem"`, `"ipsum"`) | - | - |
 | isFancy | boolean | - | examples (`true`, `false`) | - | - |
 | doubleAmount | number | - | examples (`42.42`, `352.01`) | format (`double`) | - |
 | exampleInstant | string | - | examples (`"2022-01-31T23:20:50.52Z"`, `"1985-04-12T15:59:55-08:00"`) | format (`date-time`) | - |
@@ -52,7 +52,7 @@ Publish information
 | bigDecimalAmount | number | - | examples (`42.42`, `352.01`) | format (`float`) | - |
 | exampleLocalDate | string | - | examples (`"2022-01-31"`, `"1985-04-12"`) | format (`date`) | - |
 | fieldAnnotation | integer | - | examples (`"456565"`, `"4654"`) | format (`flapping`) | - |
-| currency | string | - | examples (`"blah"`, `"blub"`) | - | - |
+| currency | string | - | examples (`"Lorem"`, `"ipsum"`) | - | - |
 | longAmount | integer | - | examples (`42`, `352`) | format (`int64`) | - |
 
 > Examples of payload _(generated)_
@@ -63,16 +63,16 @@ Publish information
   "intAmount": 42,
   "exampleLocalDateTime": "2022-01-31T23:20:50.52Z",
   "innerExample": {
-    "innerCurrency": "blah",
+    "innerCurrency": "Lorem",
     "nestedInnerExample": {
-      "nestedInnerCurrency": "blah"
+      "nestedInnerCurrency": "Lorem"
     }
   },
-  "finalCurrency": "blah",
+  "finalCurrency": "Lorem",
   "listCurrency": [
-    "blah"
+    "Lorem"
   ],
-  "privateFinalCurrency": "blah",
+  "privateFinalCurrency": "Lorem",
   "isFancy": true,
   "doubleAmount": 42.42,
   "exampleInstant": "2022-01-31T23:20:50.52Z",
@@ -80,7 +80,7 @@ Publish information
   "bigDecimalAmount": 42.42,
   "exampleLocalDate": "2022-01-31",
   "fieldAnnotation": "456565",
-  "currency": "blah",
+  "currency": "Lorem",
   "longAmount": 42
 }
 ```

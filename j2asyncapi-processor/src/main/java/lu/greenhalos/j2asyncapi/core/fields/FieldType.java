@@ -36,4 +36,10 @@ public interface FieldType {
 
     default void handleAdditionally(@Nullable Field field, Schema fieldSchema, Config config) {
     }
+
+
+    default String getDescription() {
+
+        return null;
+    }
 }

@@ -72,6 +72,8 @@ public class FieldUtil {
             fieldSchema.setExamples(fieldType.getExamples(field));
         }
 
+        fieldSchema.setDescription(fieldType.getDescription());
+
         fieldType.handleAdditionally(field, fieldSchema, config);
 
         return fieldSchema;

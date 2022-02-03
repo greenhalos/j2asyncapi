@@ -44,6 +44,7 @@ public class WriteToFileTest {
                 .add(fieldType(ObjectRepresentingAnId.class)
                             .examples("value1", "value42")
                         .type("string")
+                        .description("there can only be 2 valid values")
                         .build())
                 .withAsyncApi(asyncAPI)
                 .build();

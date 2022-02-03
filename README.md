@@ -55,10 +55,7 @@ class Listener {
 
 # TODOS
 
-* AsyncApi.Message
 * @JsonIgnore
-* Empty body
-* anonymous queue
 * process java.util.Locale
 * Statistics about schemas
 

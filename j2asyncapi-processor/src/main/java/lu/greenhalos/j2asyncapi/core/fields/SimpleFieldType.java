@@ -3,6 +3,7 @@ package lu.greenhalos.j2asyncapi.core.fields;
 import java.lang.reflect.Field;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 
@@ -16,13 +17,15 @@ public class SimpleFieldType implements FieldType {
     private final List<Object> examples;
     private final String type;
     private final String format;
+    private final String description;
 
     private SimpleFieldType(Builder builder) {
 
         this.allowedClass = List.of(builder.allowedClass);
-        this.examples = List.copyOf(builder.examples);
+        this.examples = Optional.ofNullable(builder.examples).map(List::copyOf).orElse(null);
         this.type = builder.type;
         this.format = builder.format;
+        this.description = builder.description;
     }
 
     @Override
@@ -53,6 +56,13 @@ public class SimpleFieldType implements FieldType {
     }
 
 
+    @Override
+    public String getDescription() {
+
+        return this.description;
+    }
+
+
     public static Builder fieldType(Class<?> allowedClass) {
 
         return new Builder(allowedClass);
@@ -64,6 +74,7 @@ public class SimpleFieldType implements FieldType {
         private List<Object> examples;
         private String type;
         private String format;
+        private String description;
 
         public Builder(Class<?> allowedClass) {
 
@@ -89,6 +100,14 @@ public class SimpleFieldType implements FieldType {
         public Builder type(String type) {
 
             this.type = type;
+
+            return this;
+        }
+
+
+        public Builder description(String description) {
+
+            this.description = description;
 
             return this;
         }

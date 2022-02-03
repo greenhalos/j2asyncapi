@@ -59,7 +59,7 @@ Description explaining exactly what happens here
 | (root) | - | - | - | - | **additional properties are allowed** |
 | amount | number | - | examples (`42.42`, `352.01`) | format (`float`) | - |
 | currency | string | - | examples (`"EUR"`, `"USD"`, `"CHF"`) | - | - |
-| id | string | - | examples (`"value1"`, `"value42"`) | - | - |
+| id | string | there can only be 2 valid values | examples (`"value1"`, `"value42"`) | - | - |
 
 > Examples of payload _(generated)_
 

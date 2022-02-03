@@ -67,8 +67,9 @@ components:
         currency:
           $ref: "#/components/schemas/java.lang.String-931073f3"
         id:
-          $ref: "#/components/schemas/lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ObjectRepresentingAnId-d3e956cf"
-    lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ObjectRepresentingAnId-d3e956cf:
+          $ref: "#/components/schemas/lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ObjectRepresentingAnId-3841a929"
+    lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ObjectRepresentingAnId-3841a929:
+      description: "there can only be 2 valid values"
       examples:
       - "value1"
       - "value42"
