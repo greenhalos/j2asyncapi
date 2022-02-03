@@ -19,41 +19,70 @@ channels:
         $ref: "#/components/messages/lu.greenhalos.j2asyncapi.core.WriteToFileTest$Example"
 components:
   schemas:
-    java.lang.Integer-decfea64:
+    java.lang.Boolean-96239209:
       examples:
-      - 42
-      - 352
-      type: "integer"
-      format: "int32"
-    java.lang.Float-dbc8e12d:
-      examples:
-      - 42.42
-      - 352.01
-      type: "number"
-      format: "float"
-    lu.greenhalos.j2asyncapi.core.WriteToFileTest$NestedInnerExample:
-      title: "NestedInnerExample"
-      properties:
-        nestedInnerCurrency:
-          $ref: "#/components/schemas/java.lang.String-216cb264"
+      - true
+      - false
+      type: "boolean"
     java.lang.Double-ed55d4cc:
       examples:
       - 42.42
       - 352.01
       type: "number"
       format: "double"
-    java.time.Instant-b3f0e98:
+    java.lang.Float-dbc8e12d:
       examples:
-      - "2022-01-31T23:20:50.52Z"
-      - "1985-04-12T15:59:55-08:00"
+      - 42.42
+      - 352.01
+      type: "number"
+      format: "float"
+    java.lang.Integer-c5a8ddd3:
+      examples:
+      - "456565"
+      - "4654"
+      type: "integer"
+      format: "flapping"
+    java.lang.Integer-decfea64:
+      examples:
+      - 42
+      - 352
+      type: "integer"
+      format: "int32"
+    java.lang.Long-dff9a141:
+      examples:
+      - 42
+      - 352
+      type: "integer"
+      format: "int64"
+    java.lang.String-216cb264:
+      examples:
+      - "blah"
+      - "blub"
       type: "string"
-      format: "date-time"
     java.math.BigDecimal-dbc8e12d:
       examples:
       - 42.42
       - 352.01
       type: "number"
       format: "float"
+    java.time.Instant-b3f0e98:
+      examples:
+      - "2022-01-31T23:20:50.52Z"
+      - "1985-04-12T15:59:55-08:00"
+      type: "string"
+      format: "date-time"
+    java.time.LocalDate-b6e08ca0:
+      examples:
+      - "2022-01-31"
+      - "1985-04-12"
+      type: "string"
+      format: "date"
+    java.time.LocalDateTime-b3f0e98:
+      examples:
+      - "2022-01-31T23:20:50.52Z"
+      - "1985-04-12T15:59:55-08:00"
+      type: "string"
+      format: "date-time"
     java.util.List-39a15bb0:
       type: "array"
       items:
@@ -93,47 +122,6 @@ components:
           $ref: "#/components/schemas/java.lang.String-216cb264"
         longAmount:
           $ref: "#/components/schemas/java.lang.Long-dff9a141"
-    lu.greenhalos.j2asyncapi.core.WriteToFileTest$InnerExample:
-      title: "InnerExample"
-      properties:
-        innerCurrency:
-          $ref: "#/components/schemas/java.lang.String-216cb264"
-        nestedInnerExample:
-          $ref: "#/components/schemas/lu.greenhalos.j2asyncapi.core.WriteToFileTest$NestedInnerExample"
-    java.lang.Long-dff9a141:
-      examples:
-      - 42
-      - 352
-      type: "integer"
-      format: "int64"
-    java.time.LocalDateTime-b3f0e98:
-      examples:
-      - "2022-01-31T23:20:50.52Z"
-      - "1985-04-12T15:59:55-08:00"
-      type: "string"
-      format: "date-time"
-    java.lang.String-216cb264:
-      examples:
-      - "blah"
-      - "blub"
-      type: "string"
-    java.lang.Boolean-96239209:
-      examples:
-      - true
-      - false
-      type: "boolean"
-    java.time.LocalDate-b6e08ca0:
-      examples:
-      - "2022-01-31"
-      - "1985-04-12"
-      type: "string"
-      format: "date"
-    java.lang.Integer-c5a8ddd3:
-      examples:
-      - "456565"
-      - "4654"
-      type: "integer"
-      format: "flapping"
     lu.greenhalos.j2asyncapi.core.WriteToFileTest$ExampleEnum-f54df644:
       examples:
       - "VALUE_2"
@@ -142,6 +130,18 @@ components:
       enum:
       - "VALUE_2"
       - "VALUE_3"
+    lu.greenhalos.j2asyncapi.core.WriteToFileTest$InnerExample:
+      title: "InnerExample"
+      properties:
+        innerCurrency:
+          $ref: "#/components/schemas/java.lang.String-216cb264"
+        nestedInnerExample:
+          $ref: "#/components/schemas/lu.greenhalos.j2asyncapi.core.WriteToFileTest$NestedInnerExample"
+    lu.greenhalos.j2asyncapi.core.WriteToFileTest$NestedInnerExample:
+      title: "NestedInnerExample"
+      properties:
+        nestedInnerCurrency:
+          $ref: "#/components/schemas/java.lang.String-216cb264"
   messages:
     lu.greenhalos.j2asyncapi.core.WriteToFileTest$Example:
       payload:

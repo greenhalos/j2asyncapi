@@ -1,6 +1,5 @@
 package lu.greenhalos.j2asyncapi.core;
 
-import com.asyncapi.v2.model.AsyncAPI;
 import com.asyncapi.v2.model.Reference;
 import com.asyncapi.v2.model.schema.Schema;
 
@@ -25,8 +24,7 @@ public class FieldUtil {
     }
 
 
-    public static Reference process(Class<?> originalTargetClass, AsyncAPI asyncAPI, @Nullable Field field,
-        Config config) {
+    public static Reference process(Class<?> originalTargetClass, @Nullable Field field, Config config) {
 
         Class<?> targetClass;
 
@@ -40,17 +38,17 @@ public class FieldUtil {
         var schema = config.fieldTypes.stream()
                 .filter(fieldType -> fieldType.canHandle(targetClass))
                 .findFirst()
-                .map(fieldType -> toSchema(field, fieldType, asyncAPI, config))
+                .map(fieldType -> toSchema(field, fieldType, config))
                 .orElseThrow(() -> new IllegalArgumentException(""));
 
         var schemaName = String.format("%s-%x", targetClass.getName(), schema.hashCode());
-        asyncAPI.getComponents().getSchemas().put(schemaName, schema);
+        config.asyncAPI.getComponents().getSchemas().put(schemaName, schema);
 
         return new Reference(String.format("#/components/schemas/%s", schemaName));
     }
 
 
-    private static Schema toSchema(@Nullable Field field, FieldType fieldType, AsyncAPI asyncAPI, Config config) {
+    private static Schema toSchema(@Nullable Field field, FieldType fieldType, Config config) {
 
         var fieldSchema = new Schema();
 
@@ -74,7 +72,7 @@ public class FieldUtil {
             fieldSchema.setExamples(fieldType.getExamples(field));
         }
 
-        fieldType.handleAdditionally(field, fieldSchema, asyncAPI, config);
+        fieldType.handleAdditionally(field, fieldSchema, config);
 
         return fieldSchema;
     }

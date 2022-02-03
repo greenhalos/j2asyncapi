@@ -1,9 +1,7 @@
 package lu.greenhalos.j2asyncapi.core;
 
-import com.asyncapi.v2.model.AsyncAPI;
 import com.asyncapi.v2.model.Reference;
 import com.asyncapi.v2.model.channel.message.Message;
-import com.asyncapi.v2.model.component.Components;
 import com.asyncapi.v2.model.schema.Schema;
 
 import lombok.SneakyThrows;
@@ -48,22 +46,12 @@ public final class FieldTestUtil {
     public static void assertSchemaOnClass(Class<?> exampleClass, Map<String, Schema> expectedSchemasForField,
         Class<?> fieldType, int fieldSchemaHashCode) {
 
-        // given
-        var schemas = new HashMap<String, Object>();
-        var messages = new HashMap<String, Object>();
-
-        var components = new Components();
-        components.setSchemas(schemas);
-        components.setMessages(messages);
-
-        AsyncAPI asyncAPI = new AsyncAPI();
-        asyncAPI.setComponents(components);
-
         // when
-        var messageReference = String.format("#/components/messages/%s", exampleClass.getName());
-        var reference = MessageUtil.process(exampleClass, asyncAPI, defaultConfig());
+        var config = defaultConfig();
+        var reference = MessageUtil.process(exampleClass, config);
 
         // then
+        var messageReference = String.format("#/components/messages/%s", exampleClass.getName());
         assertThat(reference).usingRecursiveComparison().isEqualTo(new Reference(messageReference));
 
         var message = new Message();
@@ -71,7 +59,8 @@ public final class FieldTestUtil {
         message.setTitle(exampleClass.getName());
 
         Map<String, Object> expectedMessages = Map.of(exampleClass.getName(), message);
-        assertThat(messages).usingRecursiveComparison().isEqualTo(expectedMessages);
+        assertThat(config.asyncAPI.getComponents().getMessages()).usingRecursiveComparison()
+            .isEqualTo(expectedMessages);
 
         var fieldReferenceSchema = new Schema();
         fieldReferenceSchema.setRef(String.format("#/components/schemas/%s-%x", fieldType.getName(),
@@ -84,7 +73,7 @@ public final class FieldTestUtil {
         Map<String, Object> expectedSchemas = new HashMap<>();
         expectedSchemas.put(exampleClass.getName(), exampleSchema);
         expectedSchemas.putAll(expectedSchemasForField);
-        assertThat(schemas).usingRecursiveComparison().isEqualTo(expectedSchemas);
+        assertThat(config.asyncAPI.getComponents().getSchemas()).usingRecursiveComparison().isEqualTo(expectedSchemas);
     }
 
 

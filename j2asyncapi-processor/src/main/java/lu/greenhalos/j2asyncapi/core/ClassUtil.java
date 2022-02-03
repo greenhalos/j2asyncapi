@@ -1,6 +1,5 @@
 package lu.greenhalos.j2asyncapi.core;
 
-import com.asyncapi.v2.model.AsyncAPI;
 import com.asyncapi.v2.model.Reference;
 import com.asyncapi.v2.model.schema.Schema;
 
@@ -26,26 +25,26 @@ public class ClassUtil {
 
     private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    public static Reference process(Class<?> targetClass, AsyncAPI asyncAPI, Config config) {
+    public static Reference process(Class<?> targetClass, Config config) {
 
-        return process(asyncAPI, null, targetClass, config);
+        return process(null, targetClass, config);
     }
 
 
-    private static Reference process(Field field, AsyncAPI asyncAPI, Config config) {
+    private static Reference process(Field field, Config config) {
 
         Class<?> targetClass = field.getType();
 
-        return process(asyncAPI, field, targetClass, config);
+        return process(field, targetClass, config);
     }
 
 
-    private static Reference process(AsyncAPI asyncAPI, @Nullable Field field, Class<?> targetClass, Config config) {
+    private static Reference process(@Nullable Field field, Class<?> targetClass, Config config) {
 
         if (FieldUtil.isRawType(targetClass, config)) {
             LOG.info("{} is a raw type", targetClass.getName());
 
-            return FieldUtil.process(targetClass, asyncAPI, field, config);
+            return FieldUtil.process(targetClass, field, config);
         }
 
         LOG.info("{} is not a raw type", targetClass.getName());
@@ -59,7 +58,7 @@ public class ClassUtil {
                 continue;
             }
 
-            var fieldSchema = ClassUtil.process(declaredField, asyncAPI, config);
+            var fieldSchema = ClassUtil.process(declaredField, config);
             var schema = new Schema();
             schema.setRef(fieldSchema.getRef());
             properties.put(declaredField.getName(), schema);
@@ -69,7 +68,7 @@ public class ClassUtil {
         schema.setTitle(targetClass.getSimpleName());
         schema.setProperties(properties);
 
-        asyncAPI.getComponents().getSchemas().put(targetClass.getName(), schema);
+        config.asyncAPI.getComponents().getSchemas().put(targetClass.getName(), schema);
 
         return new Reference(String.format("#/components/schemas/%s", targetClass.getName()));
     }

@@ -1,6 +1,5 @@
 package lu.greenhalos.j2asyncapi.core.fields;
 
-import com.asyncapi.v2.model.AsyncAPI;
 import com.asyncapi.v2.model.schema.Schema;
 
 import lu.greenhalos.j2asyncapi.core.Config;
@@ -35,6 +34,6 @@ public interface FieldType {
     String getFormat(@Nullable Field field);
 
 
-    default void handleAdditionally(@Nullable Field field, Schema fieldSchema, AsyncAPI asyncAPI, Config config) {
+    default void handleAdditionally(@Nullable Field field, Schema fieldSchema, Config config) {
     }
 }

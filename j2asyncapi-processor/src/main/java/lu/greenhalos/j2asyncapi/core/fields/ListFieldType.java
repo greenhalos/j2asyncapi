@@ -1,6 +1,5 @@
 package lu.greenhalos.j2asyncapi.core.fields;
 
-import com.asyncapi.v2.model.AsyncAPI;
 import com.asyncapi.v2.model.schema.Schema;
 
 import lu.greenhalos.j2asyncapi.core.ClassUtil;
@@ -47,7 +46,7 @@ public class ListFieldType implements FieldType {
 
 
     @Override
-    public void handleAdditionally(Field field, Schema fieldSchema, AsyncAPI asyncAPI, Config config) {
+    public void handleAdditionally(Field field, Schema fieldSchema, Config config) {
 
         if (field == null) {
             return;
@@ -56,7 +55,7 @@ public class ListFieldType implements FieldType {
         ParameterizedType listType = (ParameterizedType) field.getGenericType();
         Class<?> listItemClass = (Class<?>) listType.getActualTypeArguments()[0];
 
-        var items = ClassUtil.process(listItemClass, asyncAPI, config);
+        var items = ClassUtil.process(listItemClass, config);
         fieldSchema.setItems(items);
     }
 }

@@ -40,13 +40,16 @@ public class WriteToFileTest {
     @Test
     void generate() throws IOException {
 
-        var config = Config.builder().addFieldType(new ObjectRepresentingAnIdFieldType()).build();
-
         var asyncAPI = new AsyncAPI();
         asyncAPI.setInfo(info());
         asyncAPI.setServers(servers());
 
-        AsyncApiProcessor.process(ExampleBaseApplication.class, asyncAPI, config);
+        var config = Config.builder()
+                .addFieldType(new ObjectRepresentingAnIdFieldType())
+                .withAsyncApi(asyncAPI)
+                .build();
+
+        AsyncApiProcessor.process(ExampleBaseApplication.class, config);
         writeToFile(asyncAPI);
     }
 

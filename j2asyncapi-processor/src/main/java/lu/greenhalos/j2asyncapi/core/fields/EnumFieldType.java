@@ -1,6 +1,5 @@
 package lu.greenhalos.j2asyncapi.core.fields;
 
-import com.asyncapi.v2.model.AsyncAPI;
 import com.asyncapi.v2.model.schema.Schema;
 
 import lu.greenhalos.j2asyncapi.core.Config;
@@ -60,7 +59,7 @@ public class EnumFieldType implements FieldType {
 
 
     @Override
-    public void handleAdditionally(Field field, Schema fieldSchema, AsyncAPI asyncAPI, Config config) {
+    public void handleAdditionally(Field field, Schema fieldSchema, Config config) {
 
         if (field == null) {
             return;

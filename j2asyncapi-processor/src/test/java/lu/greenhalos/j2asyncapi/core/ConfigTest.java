@@ -1,5 +1,7 @@
 package lu.greenhalos.j2asyncapi.core;
 
+import com.asyncapi.v2.model.AsyncAPI;
+
 import lu.greenhalos.j2asyncapi.core.fields.FieldType;
 
 import org.junit.jupiter.api.Test;
@@ -18,7 +20,9 @@ class ConfigTest {
     @Test
     void defaultConfig() {
 
-        assertThat(Config.defaultConfig().fieldTypes).hasSize(8);
+        var sut = Config.defaultConfig();
+        assertThat(sut.fieldTypes).hasSize(8);
+        assertThat(sut.asyncAPI).isNotNull();
     }
 
 
@@ -40,6 +44,16 @@ class ConfigTest {
 
         assertThat(result.fieldTypes)
             .hasSize(9);
+    }
+
+
+    @Test
+    void builder_asyncAPI() {
+
+        var asyncAPI = new AsyncAPI();
+        var result = Config.builder().withAsyncApi(asyncAPI).build();
+
+        assertThat(result.asyncAPI).isSameAs(asyncAPI);
     }
 
     private static class ExampleFieldType implements FieldType {

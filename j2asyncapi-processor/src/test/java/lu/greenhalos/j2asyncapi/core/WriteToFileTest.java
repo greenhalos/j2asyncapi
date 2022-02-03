@@ -32,8 +32,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static lu.greenhalos.j2asyncapi.core.Config.defaultConfig;
-
 
 /**
  * @author  Ben Antony - antony@greenhalos.lu
@@ -60,7 +58,8 @@ public class WriteToFileTest {
         asyncAPI.setInfo(info());
         asyncAPI.setServers(servers());
 
-        var messageReference = MessageUtil.process(Example.class, asyncAPI, defaultConfig());
+        var config = Config.builder().withAsyncApi(asyncAPI).build();
+        var messageReference = MessageUtil.process(Example.class, config);
 
         var subscribe = new Operation();
         subscribe.setMessage(messageReference);

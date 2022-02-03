@@ -7,13 +7,12 @@ import com.asyncapi.v2.model.channel.operation.Operation;
 import lu.greenhalos.j2asyncapi.annoations.example.ExampleBaseApplication;
 import lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener;
 import lu.greenhalos.j2asyncapi.annoations.example.publisher.ExamplePublisher;
+import lu.greenhalos.j2asyncapi.core.Config;
 import lu.greenhalos.j2asyncapi.core.MessageUtil;
 
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
-
-import static lu.greenhalos.j2asyncapi.core.Config.defaultConfig;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,15 +23,15 @@ class AsyncApiProcessorTest {
     void process() {
 
         var asyncAPI = new AsyncAPI();
-        var config = defaultConfig();
+        var config = Config.builder().withAsyncApi(asyncAPI).build();
 
-        AsyncApiProcessor.process(ExampleBaseApplication.class, asyncAPI, config);
+        AsyncApiProcessor.process(ExampleBaseApplication.class, config);
 
         var subscribe = new Operation();
-        subscribe.setMessage(MessageUtil.process(ExamplePublisher.ExamplePublisherMessage.class, asyncAPI, config));
+        subscribe.setMessage(MessageUtil.process(ExamplePublisher.ExamplePublisherMessage.class, config));
 
         var publisher = new Operation();
-        publisher.setMessage(MessageUtil.process(ExampleListener.ExampleListenerMessage.class, asyncAPI, config));
+        publisher.setMessage(MessageUtil.process(ExampleListener.ExampleListenerMessage.class, config));
 
         var channelItem = new ChannelItem();
         channelItem.setSubscribe(subscribe);
