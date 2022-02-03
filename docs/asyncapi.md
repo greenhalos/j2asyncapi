@@ -35,7 +35,7 @@ Publish information
 |---|---|---|---|---|---|
 | (root) | - | - | - | - | **additional properties are allowed** |
 | exampleEnum | string | - | allowed (`"VALUE_2"`, `"VALUE_3"`), examples (`"VALUE_2"`, `"VALUE_3"`) | - | - |
-| intAmount | integer | - | examples (`"456565"`, `"4654"`) | format (`flapping`) | - |
+| intAmount | integer | - | examples (`42`, `352`) | format (`int32`) | - |
 | exampleLocalDateTime | string | - | examples (`"2022-01-31T23:20:50.52Z"`, `"1985-04-12T15:59:55-08:00"`) | format (`date-time`) | - |
 | innerExample | - | - | - | - | **additional properties are allowed** |
 | innerExample.innerCurrency | string | - | examples (`"blah"`, `"blub"`) | - | - |
@@ -60,7 +60,7 @@ Publish information
 ```json
 {
   "exampleEnum": "VALUE_2",
-  "intAmount": "456565",
+  "intAmount": 42,
   "exampleLocalDateTime": "2022-01-31T23:20:50.52Z",
   "innerExample": {
     "innerCurrency": "blah",

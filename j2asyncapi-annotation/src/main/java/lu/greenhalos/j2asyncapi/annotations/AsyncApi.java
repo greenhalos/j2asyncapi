@@ -22,7 +22,7 @@ public @interface AsyncApi {
     Type type();
 
 
-    String exchange();
+    String exchange() default "/";
 
 
     String routingKey();

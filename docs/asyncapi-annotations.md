@@ -37,13 +37,15 @@ Description explaining exactly what happens here
 | (root) | - | - | - | - | **additional properties are allowed** |
 | amount | number | - | examples (`42.42`, `352.01`) | format (`float`) | - |
 | currency | string | - | examples (`"EUR"`, `"USD"`, `"CHF"`) | - | - |
+| id | string | - | examples (`"value1"`, `"value42"`) | - | - |
 
 > Examples of payload _(generated)_
 
 ```json
 {
   "amount": 42.42,
-  "currency": "EUR"
+  "currency": "EUR",
+  "id": "value1"
 }
 ```
 
@@ -54,6 +56,8 @@ Description explaining exactly what happens here
 Description explaining exactly what happens here
 
 #### Message lu.greenhalos.j2asyncapi.annoations.example.publisher.ExamplePublisher$ExamplePublisherMessage `lu.greenhalos.j2asyncapi.annoations.example.publisher.ExamplePublisher$ExamplePublisherMessage`
+
+this is a message which gets published
 
 ##### Payload
 
