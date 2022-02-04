@@ -30,7 +30,7 @@ RabbitMQ Server
 
 ### SUB `exchange/queries` Operation
 
-#### Message Void `java.lang.Void`
+#### Message Void `j.l.Void`
 
 ##### Payload
 
@@ -50,7 +50,7 @@ RabbitMQ Server
 
 Description explaining exactly what happens here
 
-#### Message ExampleListenerMessage `lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ExampleListenerMessage`
+#### Message ExampleListenerMessage `l.g.j.a.e.l.ExampleListener$ExampleListenerMessage`
 
 ##### Payload
 
@@ -77,7 +77,7 @@ Description explaining exactly what happens here
 
 Description explaining exactly what happens here
 
-#### Message ExamplePublisherMessage `lu.greenhalos.j2asyncapi.annoations.example.publisher.ExamplePublisher$ExamplePublisherMessage`
+#### Message ExamplePublisherMessage `l.g.j.a.e.p.ExamplePublisher$ExamplePublisherMessage`
 
 this is a message which gets published
 
@@ -102,7 +102,7 @@ this is a message which gets published
 
 ### SUB `exchange/routing.key.multiple1` Operation
 
-#### Message Void `java.lang.Void`
+#### Message Void `j.l.Void`
 
 ##### Payload
 
@@ -120,7 +120,7 @@ this is a message which gets published
 
 ### SUB `exchange/routing.key.multiple2` Operation
 
-#### Message Void `java.lang.Void`
+#### Message Void `j.l.Void`
 
 ##### Payload
 
@@ -138,7 +138,7 @@ this is a message which gets published
 
 ### SUB `routing.key.default.exchange` Operation
 
-#### Message Void `java.lang.Void`
+#### Message Void `j.l.Void`
 
 ##### Payload
 

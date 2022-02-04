@@ -40,7 +40,7 @@ class AsyncApiProcessorTest {
         channelItem.setDescription("Description explaining exactly what happens here");
 
         Operation subscriberEmptyMessage = new Operation();
-        subscriberEmptyMessage.setMessage(new Reference("#/components/messages/java.lang.Void"));
+        subscriberEmptyMessage.setMessage(new Reference("#/components/messages/j.l.Void"));
 
         var channelItemEmptyMessage = new ChannelItem();
         channelItemEmptyMessage.setSubscribe(subscriberEmptyMessage);

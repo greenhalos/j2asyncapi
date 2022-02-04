@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static lu.greenhalos.j2asyncapi.core.ClassNameUtil.name;
 import static lu.greenhalos.j2asyncapi.core.Config.defaultConfig;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -28,7 +29,7 @@ public final class FieldTestUtil {
         Class<?> fieldType = getFieldType(exampleClass);
 
         var fieldSchemaHashCode = fieldSchema.hashCode();
-        var schemaName = String.format("%s-%x", fieldType.getName(), fieldSchemaHashCode);
+        var schemaName = String.format("%s-%x", name(fieldType), fieldSchemaHashCode);
         var expectedSchemasForField = Map.of(schemaName, fieldSchema);
         assertSchemaOnClass(exampleClass, expectedSchemasForField, fieldSchemaHashCode);
     }
@@ -51,27 +52,26 @@ public final class FieldTestUtil {
         var reference = MessageUtil.process(exampleClass, config);
 
         // then
-        var messageReference = String.format("#/components/messages/%s", exampleClass.getName());
+        var messageReference = String.format("#/components/messages/%s", name(exampleClass));
         assertThat(reference).usingRecursiveComparison().isEqualTo(new Reference(messageReference));
 
         var message = new Message();
-        message.setPayload(new Reference(String.format("#/components/schemas/%s", exampleClass.getName())));
+        message.setPayload(new Reference(String.format("#/components/schemas/%s", name(exampleClass))));
         message.setTitle(exampleClass.getSimpleName());
 
-        Map<String, Object> expectedMessages = Map.of(exampleClass.getName(), message);
+        Map<String, Object> expectedMessages = Map.of(name(exampleClass), message);
         assertThat(config.asyncAPI.getComponents().getMessages()).usingRecursiveComparison()
             .isEqualTo(expectedMessages);
 
         var fieldReferenceSchema = new Schema();
-        fieldReferenceSchema.setRef(String.format("#/components/schemas/%s-%x", fieldType.getName(),
-                fieldSchemaHashCode));
+        fieldReferenceSchema.setRef(String.format("#/components/schemas/%s-%x", name(fieldType), fieldSchemaHashCode));
 
         var exampleSchema = new Schema();
         exampleSchema.setTitle("Example");
         exampleSchema.setProperties(Map.of("field", fieldReferenceSchema));
 
         Map<String, Object> expectedSchemas = new HashMap<>();
-        expectedSchemas.put(exampleClass.getName(), exampleSchema);
+        expectedSchemas.put(name(exampleClass), exampleSchema);
         expectedSchemas.putAll(expectedSchemasForField);
         assertThat(config.asyncAPI.getComponents().getSchemas()).usingRecursiveComparison().isEqualTo(expectedSchemas);
     }

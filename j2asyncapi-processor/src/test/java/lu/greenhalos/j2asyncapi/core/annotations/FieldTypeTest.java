@@ -24,7 +24,7 @@ class FieldTypeTest {
         fieldSchema.setFormat("int32");
         fieldSchema.setExamples(List.of(42, 352));
 
-        var expectedSchemasForField = Map.of("java.lang.Integer-decfea64", fieldSchema);
+        var expectedSchemasForField = Map.of("j.l.Integer-decfea64", fieldSchema);
 
         FieldTestUtil.assertSchemaOnClass(Example.class, expectedSchemasForField, Integer.class,
             fieldSchema.hashCode());

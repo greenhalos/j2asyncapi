@@ -16,113 +16,113 @@ channels:
     description: "Publish information"
     subscribe:
       message:
-        $ref: "#/components/messages/lu.greenhalos.j2asyncapi.core.WriteToFileTest$Example"
+        $ref: "#/components/messages/l.g.j.c.WriteToFileTest$Example"
 components:
   schemas:
-    java.lang.Boolean-96239209:
+    j.l.Boolean-96239209:
       examples:
       - true
       - false
       type: "boolean"
-    java.lang.Double-ed55d4cc:
+    j.l.Double-ed55d4cc:
       examples:
       - 42.42
       - 352.01
       type: "number"
       format: "double"
-    java.lang.Float-dbc8e12d:
+    j.l.Float-dbc8e12d:
       examples:
       - 42.42
       - 352.01
       type: "number"
       format: "float"
-    java.lang.Integer-c5a8ddd3:
+    j.l.Integer-c5a8ddd3:
       examples:
       - "456565"
       - "4654"
       type: "integer"
       format: "flapping"
-    java.lang.Integer-decfea64:
+    j.l.Integer-decfea64:
       examples:
       - 42
       - 352
       type: "integer"
       format: "int32"
-    java.lang.Long-dff9a141:
+    j.l.Long-dff9a141:
       examples:
       - 42
       - 352
       type: "integer"
       format: "int64"
-    java.lang.String-38af4fe9:
+    j.l.String-38af4fe9:
       examples:
       - "Lorem"
       - "ipsum"
       type: "string"
-    java.math.BigDecimal-dbc8e12d:
+    j.m.BigDecimal-dbc8e12d:
       examples:
       - 42.42
       - 352.01
       type: "number"
       format: "float"
-    java.time.Instant-b3f0e98:
+    j.t.Instant-b3f0e98:
       examples:
       - "2022-01-31T23:20:50.52Z"
       - "1985-04-12T15:59:55-08:00"
       type: "string"
       format: "date-time"
-    java.time.LocalDate-b6e08ca0:
+    j.t.LocalDate-b6e08ca0:
       examples:
       - "2022-01-31"
       - "1985-04-12"
       type: "string"
       format: "date"
-    java.time.LocalDateTime-b3f0e98:
+    j.t.LocalDateTime-b3f0e98:
       examples:
       - "2022-01-31T23:20:50.52Z"
       - "1985-04-12T15:59:55-08:00"
       type: "string"
       format: "date-time"
-    java.util.List-33eeac26:
+    j.u.List-f544c514:
       type: "array"
       items:
-        $ref: "#/components/schemas/java.lang.String-38af4fe9"
-    lu.greenhalos.j2asyncapi.core.WriteToFileTest$Example:
+        $ref: "#/components/schemas/j.l.String-38af4fe9"
+    l.g.j.c.WriteToFileTest$Example:
       title: "Example"
       properties:
         exampleEnum:
-          $ref: "#/components/schemas/lu.greenhalos.j2asyncapi.core.WriteToFileTest$ExampleEnum-f54df644"
+          $ref: "#/components/schemas/l.g.j.c.WriteToFileTest$ExampleEnum-f54df644"
         intAmount:
-          $ref: "#/components/schemas/java.lang.Integer-decfea64"
+          $ref: "#/components/schemas/j.l.Integer-decfea64"
         exampleLocalDateTime:
-          $ref: "#/components/schemas/java.time.LocalDateTime-b3f0e98"
+          $ref: "#/components/schemas/j.t.LocalDateTime-b3f0e98"
         innerExample:
-          $ref: "#/components/schemas/lu.greenhalos.j2asyncapi.core.WriteToFileTest$InnerExample"
+          $ref: "#/components/schemas/l.g.j.c.WriteToFileTest$InnerExample"
         finalCurrency:
-          $ref: "#/components/schemas/java.lang.String-38af4fe9"
+          $ref: "#/components/schemas/j.l.String-38af4fe9"
         listCurrency:
-          $ref: "#/components/schemas/java.util.List-33eeac26"
+          $ref: "#/components/schemas/j.u.List-f544c514"
         privateFinalCurrency:
-          $ref: "#/components/schemas/java.lang.String-38af4fe9"
+          $ref: "#/components/schemas/j.l.String-38af4fe9"
         isFancy:
-          $ref: "#/components/schemas/java.lang.Boolean-96239209"
+          $ref: "#/components/schemas/j.l.Boolean-96239209"
         doubleAmount:
-          $ref: "#/components/schemas/java.lang.Double-ed55d4cc"
+          $ref: "#/components/schemas/j.l.Double-ed55d4cc"
         exampleInstant:
-          $ref: "#/components/schemas/java.time.Instant-b3f0e98"
+          $ref: "#/components/schemas/j.t.Instant-b3f0e98"
         floatingAmount:
-          $ref: "#/components/schemas/java.lang.Float-dbc8e12d"
+          $ref: "#/components/schemas/j.l.Float-dbc8e12d"
         bigDecimalAmount:
-          $ref: "#/components/schemas/java.math.BigDecimal-dbc8e12d"
+          $ref: "#/components/schemas/j.m.BigDecimal-dbc8e12d"
         exampleLocalDate:
-          $ref: "#/components/schemas/java.time.LocalDate-b6e08ca0"
+          $ref: "#/components/schemas/j.t.LocalDate-b6e08ca0"
         fieldAnnotation:
-          $ref: "#/components/schemas/java.lang.Integer-c5a8ddd3"
+          $ref: "#/components/schemas/j.l.Integer-c5a8ddd3"
         currency:
-          $ref: "#/components/schemas/java.lang.String-38af4fe9"
+          $ref: "#/components/schemas/j.l.String-38af4fe9"
         longAmount:
-          $ref: "#/components/schemas/java.lang.Long-dff9a141"
-    lu.greenhalos.j2asyncapi.core.WriteToFileTest$ExampleEnum-f54df644:
+          $ref: "#/components/schemas/j.l.Long-dff9a141"
+    l.g.j.c.WriteToFileTest$ExampleEnum-f54df644:
       examples:
       - "VALUE_2"
       - "VALUE_3"
@@ -130,20 +130,20 @@ components:
       enum:
       - "VALUE_2"
       - "VALUE_3"
-    lu.greenhalos.j2asyncapi.core.WriteToFileTest$InnerExample:
+    l.g.j.c.WriteToFileTest$InnerExample:
       title: "InnerExample"
       properties:
         innerCurrency:
-          $ref: "#/components/schemas/java.lang.String-38af4fe9"
+          $ref: "#/components/schemas/j.l.String-38af4fe9"
         nestedInnerExample:
-          $ref: "#/components/schemas/lu.greenhalos.j2asyncapi.core.WriteToFileTest$NestedInnerExample"
-    lu.greenhalos.j2asyncapi.core.WriteToFileTest$NestedInnerExample:
+          $ref: "#/components/schemas/l.g.j.c.WriteToFileTest$NestedInnerExample"
+    l.g.j.c.WriteToFileTest$NestedInnerExample:
       title: "NestedInnerExample"
       properties:
         nestedInnerCurrency:
-          $ref: "#/components/schemas/java.lang.String-38af4fe9"
+          $ref: "#/components/schemas/j.l.String-38af4fe9"
   messages:
-    lu.greenhalos.j2asyncapi.core.WriteToFileTest$Example:
+    l.g.j.c.WriteToFileTest$Example:
       payload:
-        $ref: "#/components/schemas/lu.greenhalos.j2asyncapi.core.WriteToFileTest$Example"
+        $ref: "#/components/schemas/l.g.j.c.WriteToFileTest$Example"
       title: "Example"

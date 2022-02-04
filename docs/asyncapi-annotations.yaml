@@ -15,83 +15,83 @@ channels:
   exchange/queries:
     subscribe:
       message:
-        $ref: "#/components/messages/java.lang.Void"
+        $ref: "#/components/messages/j.l.Void"
   exchange/routing.key:
     description: "Description explaining exactly what happens here"
     subscribe:
       message:
-        $ref: "#/components/messages/lu.greenhalos.j2asyncapi.annoations.example.publisher.ExamplePublisher$ExamplePublisherMessage"
+        $ref: "#/components/messages/l.g.j.a.e.p.ExamplePublisher$ExamplePublisherMessage"
     publish:
       message:
-        $ref: "#/components/messages/lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ExampleListenerMessage"
+        $ref: "#/components/messages/l.g.j.a.e.l.ExampleListener$ExampleListenerMessage"
   exchange/routing.key.multiple1:
     subscribe:
       message:
-        $ref: "#/components/messages/java.lang.Void"
+        $ref: "#/components/messages/j.l.Void"
   exchange/routing.key.multiple2:
     subscribe:
       message:
-        $ref: "#/components/messages/java.lang.Void"
+        $ref: "#/components/messages/j.l.Void"
   routing.key.default.exchange:
     subscribe:
       message:
-        $ref: "#/components/messages/java.lang.Void"
+        $ref: "#/components/messages/j.l.Void"
 components:
   schemas:
-    java.lang.Integer-decfea64:
+    j.l.Integer-decfea64:
       examples:
       - 42
       - 352
       type: "integer"
       format: "int32"
-    java.lang.String-931073f3:
+    j.l.String-931073f3:
       examples:
       - "EUR"
       - "USD"
       - "CHF"
       type: "string"
-    java.lang.Void:
+    j.l.Void:
       title: "Void"
       properties: {}
-    java.math.BigDecimal-dbc8e12d:
+    j.m.BigDecimal-dbc8e12d:
       examples:
       - 42.42
       - 352.01
       type: "number"
       format: "float"
-    lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ExampleListenerMessage:
+    l.g.j.a.e.l.ExampleListener$ExampleListenerMessage:
       title: "ExampleListenerMessage"
       properties:
         amount:
-          $ref: "#/components/schemas/java.math.BigDecimal-dbc8e12d"
+          $ref: "#/components/schemas/j.m.BigDecimal-dbc8e12d"
         currency:
-          $ref: "#/components/schemas/java.lang.String-931073f3"
+          $ref: "#/components/schemas/j.l.String-931073f3"
         id:
-          $ref: "#/components/schemas/lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ObjectRepresentingAnId-3841a929"
-    lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ObjectRepresentingAnId-3841a929:
+          $ref: "#/components/schemas/l.g.j.a.e.l.ExampleListener$ObjectRepresentingAnId-3841a929"
+    l.g.j.a.e.l.ExampleListener$ObjectRepresentingAnId-3841a929:
       description: "there can only be 2 valid values"
       examples:
       - "value1"
       - "value42"
       type: "string"
-    lu.greenhalos.j2asyncapi.annoations.example.publisher.ExamplePublisher$ExamplePublisherMessage:
+    l.g.j.a.e.p.ExamplePublisher$ExamplePublisherMessage:
       title: "ExamplePublisherMessage"
       properties:
         amount:
-          $ref: "#/components/schemas/java.math.BigDecimal-dbc8e12d"
+          $ref: "#/components/schemas/j.m.BigDecimal-dbc8e12d"
         currency:
-          $ref: "#/components/schemas/java.lang.Integer-decfea64"
+          $ref: "#/components/schemas/j.l.Integer-decfea64"
   messages:
-    java.lang.Void:
+    j.l.Void:
       payload:
-        $ref: "#/components/schemas/java.lang.Void"
+        $ref: "#/components/schemas/j.l.Void"
       title: "Void"
-    lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ExampleListenerMessage:
+    l.g.j.a.e.l.ExampleListener$ExampleListenerMessage:
       payload:
-        $ref: "#/components/schemas/lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener$ExampleListenerMessage"
+        $ref: "#/components/schemas/l.g.j.a.e.l.ExampleListener$ExampleListenerMessage"
       title: "ExampleListenerMessage"
-    lu.greenhalos.j2asyncapi.annoations.example.publisher.ExamplePublisher$ExamplePublisherMessage:
+    l.g.j.a.e.p.ExamplePublisher$ExamplePublisherMessage:
       payload:
-        $ref: "#/components/schemas/lu.greenhalos.j2asyncapi.annoations.example.publisher.ExamplePublisher$ExamplePublisherMessage"
+        $ref: "#/components/schemas/l.g.j.a.e.p.ExamplePublisher$ExamplePublisherMessage"
       title: "ExamplePublisherMessage"
       description: "this is a message which gets published"

@@ -8,6 +8,8 @@ import lu.greenhalos.j2asyncapi.core.MessageUtil;
 
 import org.junit.jupiter.api.Test;
 
+import static lu.greenhalos.j2asyncapi.core.ClassNameUtil.name;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -25,7 +27,7 @@ public class MessageDescriptionTest {
         var messages = config.asyncAPI.getComponents().getMessages();
         assertThat(messages).hasSize(1);
 
-        var message = (Message) messages.get(ExampleMessage.class.getName());
+        var message = (Message) messages.get(name(ExampleMessage.class));
         assertThat(message.getDescription()).isEqualTo("fancy description");
     }
 
