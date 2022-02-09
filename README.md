@@ -24,7 +24,7 @@ A lib which helps you generate `asyncapi.yaml` from your Java code based on anno
 </dependencies>
 ```
 
-2. Copy [this test](./j2asyncapi-processor/src/test/java/lu/greenhalos/j2asyncapi/annoations/WriteToFileTest.java)
+2. Copy [this test](./j2asyncapi-example/src/test/java/lu/greenhalos/j2asyncapi/example/AsyncApiGeneratorTest.java)
    from this Repository to your code base
 3. Change `ExampleBaseApplication.class` with a valid base class of yours e.g. your SpringBootApplication class with the
    main method.
