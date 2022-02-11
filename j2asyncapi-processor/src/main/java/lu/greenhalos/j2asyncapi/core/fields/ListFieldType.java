@@ -1,9 +1,8 @@
 package lu.greenhalos.j2asyncapi.core.fields;
 
-import com.asyncapi.v2.model.schema.Schema;
-
 import lu.greenhalos.j2asyncapi.core.ClassUtil;
 import lu.greenhalos.j2asyncapi.core.Config;
+import lu.greenhalos.j2asyncapi.schemas.Schema;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;

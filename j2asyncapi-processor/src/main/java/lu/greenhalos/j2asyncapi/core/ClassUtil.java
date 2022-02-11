@@ -1,7 +1,7 @@
 package lu.greenhalos.j2asyncapi.core;
 
-import com.asyncapi.v2.model.Reference;
-import com.asyncapi.v2.model.schema.Schema;
+import lu.greenhalos.j2asyncapi.schemas.Reference;
+import lu.greenhalos.j2asyncapi.schemas.Schema;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,7 +62,7 @@ public class ClassUtil {
 
             var fieldSchema = ClassUtil.process(declaredField, config);
             var schema = new Schema();
-            schema.setRef(fieldSchema.getRef());
+            schema.set$ref(fieldSchema.get$ref());
             properties.put(declaredField.getName(), schema);
         }
 
@@ -70,7 +70,7 @@ public class ClassUtil {
         schema.setTitle(targetClass.getSimpleName());
         schema.setProperties(properties);
 
-        config.asyncAPI.getComponents().getSchemas().put(name(targetClass), schema);
+        config.asyncAPI.getComponents().getSchemas().getAdditionalProperties().put(name(targetClass), schema);
 
         return new Reference(String.format("#/components/schemas/%s", name(targetClass)));
     }

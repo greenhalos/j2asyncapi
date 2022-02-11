@@ -34,7 +34,7 @@ Publish information
 | Name | Type | Description | Value | Constraints | Notes |
 |---|---|---|---|---|---|
 | (root) | - | - | - | - | **additional properties are allowed** |
-| exampleEnum | string | - | allowed (`"VALUE_2"`, `"VALUE_3"`), examples (`"VALUE_2"`, `"VALUE_3"`) | - | - |
+| exampleEnum | string | - | examples (`"VALUE_2"`, `"VALUE_3"`) | - | - |
 | intAmount | integer | - | examples (`42`, `352`) | format (`int32`) | - |
 | exampleLocalDateTime | string | - | examples (`"2022-01-31T23:20:50.52Z"`, `"1985-04-12T15:59:55-08:00"`) | format (`date-time`) | - |
 | innerExample | - | - | - | - | **additional properties are allowed** |

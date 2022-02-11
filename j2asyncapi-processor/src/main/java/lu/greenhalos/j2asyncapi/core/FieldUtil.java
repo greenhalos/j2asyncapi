@@ -1,10 +1,9 @@
 package lu.greenhalos.j2asyncapi.core;
 
-import com.asyncapi.v2.model.Reference;
-import com.asyncapi.v2.model.schema.Schema;
-
 import lu.greenhalos.j2asyncapi.annotations.AsyncApi;
 import lu.greenhalos.j2asyncapi.core.fields.FieldType;
+import lu.greenhalos.j2asyncapi.schemas.Reference;
+import lu.greenhalos.j2asyncapi.schemas.Schema;
 
 import java.lang.reflect.Field;
 
@@ -44,7 +43,7 @@ public class FieldUtil {
                 .orElseThrow(() -> new IllegalArgumentException(""));
 
         var schemaName = String.format("%s-%x", name(targetClass), schema.hashCode());
-        config.asyncAPI.getComponents().getSchemas().put(schemaName, schema);
+        config.asyncAPI.getComponents().getSchemas().getAdditionalProperties().put(schemaName, schema);
 
         return new Reference(String.format("#/components/schemas/%s", schemaName));
     }

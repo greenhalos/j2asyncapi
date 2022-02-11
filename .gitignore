@@ -2,3 +2,7 @@ target/
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 node_modules/
+j2asyncapi-schema/node
+j2asyncapi-schema/node_modules
+j2asyncapi-schema/src/main/resources/schemas
+

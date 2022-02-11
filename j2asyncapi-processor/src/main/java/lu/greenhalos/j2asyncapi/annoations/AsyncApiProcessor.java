@@ -1,12 +1,11 @@
 package lu.greenhalos.j2asyncapi.annoations;
 
-import com.asyncapi.v2.model.channel.ChannelItem;
-import com.asyncapi.v2.model.channel.operation.Operation;
-
 import lu.greenhalos.j2asyncapi.annotations.AsyncApi;
 import lu.greenhalos.j2asyncapi.annotations.AsyncApis;
 import lu.greenhalos.j2asyncapi.core.Config;
 import lu.greenhalos.j2asyncapi.core.MessageUtil;
+import lu.greenhalos.j2asyncapi.schemas.ChannelItem;
+import lu.greenhalos.j2asyncapi.schemas.Operation;
 
 import org.reflections.Reflections;
 
@@ -125,7 +124,7 @@ public class AsyncApiProcessor {
                 throw new IllegalStateException("Unexpected value: " + annotation.type());
         }
 
-        var channels = config.asyncAPI.getChannels();
+        var channels = config.asyncAPI.getChannels().getAdditionalProperties();
 
         if (channels.containsKey(channelName)) {
             result = merge(channels.get(channelName), result);

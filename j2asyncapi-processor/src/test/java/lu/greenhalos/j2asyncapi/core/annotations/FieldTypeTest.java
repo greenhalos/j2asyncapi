@@ -1,9 +1,8 @@
 package lu.greenhalos.j2asyncapi.core.annotations;
 
-import com.asyncapi.v2.model.schema.Schema;
-
 import lu.greenhalos.j2asyncapi.annotations.AsyncApi;
 import lu.greenhalos.j2asyncapi.core.FieldTestUtil;
+import lu.greenhalos.j2asyncapi.schemas.Schema;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +23,7 @@ class FieldTypeTest {
         fieldSchema.setFormat("int32");
         fieldSchema.setExamples(List.of(42, 352));
 
-        var expectedSchemasForField = Map.of("j.l.Integer-decfea64", fieldSchema);
+        var expectedSchemasForField = Map.of("j.l.Integer-7d3b2498", fieldSchema);
 
         FieldTestUtil.assertSchemaOnClass(Example.class, expectedSchemasForField, Integer.class,
             fieldSchema.hashCode());

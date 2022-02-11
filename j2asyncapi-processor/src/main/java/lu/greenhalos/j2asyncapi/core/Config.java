@@ -1,8 +1,5 @@
 package lu.greenhalos.j2asyncapi.core;
 
-import com.asyncapi.v2.model.AsyncAPI;
-import com.asyncapi.v2.model.component.Components;
-
 import lu.greenhalos.j2asyncapi.core.fields.BooleanFieldType;
 import lu.greenhalos.j2asyncapi.core.fields.DateFieldType;
 import lu.greenhalos.j2asyncapi.core.fields.DateTimeFieldType;
@@ -12,10 +9,14 @@ import lu.greenhalos.j2asyncapi.core.fields.FieldType;
 import lu.greenhalos.j2asyncapi.core.fields.ListFieldType;
 import lu.greenhalos.j2asyncapi.core.fields.NumberFieldType;
 import lu.greenhalos.j2asyncapi.core.fields.StringFieldType;
+import lu.greenhalos.j2asyncapi.schemas.AsyncApiDocumentRoot;
+import lu.greenhalos.j2asyncapi.schemas.Channels;
+import lu.greenhalos.j2asyncapi.schemas.Components;
+import lu.greenhalos.j2asyncapi.schemas.Messages;
+import lu.greenhalos.j2asyncapi.schemas.Schemas;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeMap;
 
 
 /**
@@ -24,7 +25,7 @@ import java.util.TreeMap;
 public class Config {
 
     final List<FieldType> fieldTypes;
-    public final AsyncAPI asyncAPI;
+    public final AsyncApiDocumentRoot asyncAPI;
 
     private Config(Builder builder) {
 
@@ -32,11 +33,12 @@ public class Config {
         this.asyncAPI = builder.asyncAPI;
 
         var components = new Components();
-        components.setMessages(new TreeMap<>(String::compareTo));
-        components.setSchemas(new TreeMap<>(String::compareTo));
+
+        components.setMessages(new Messages());
+        components.setSchemas(new Schemas());
 
         // TODO check if there are no components yet
-        this.asyncAPI.setChannels(new TreeMap<>(String::compareTo));
+        this.asyncAPI.setChannels(new Channels());
         this.asyncAPI.setComponents(components);
     }
 
@@ -58,7 +60,7 @@ public class Config {
                 new EnumFieldType(), new DateFieldType(), new DateTimeFieldType());
 
         private final List<FieldType> fieldTypes = new ArrayList<>(DEFAULT_FIELD_TYPES);
-        private AsyncAPI asyncAPI;
+        private AsyncApiDocumentRoot asyncAPI;
 
         public Builder add(FieldType fieldType) {
 
@@ -68,7 +70,7 @@ public class Config {
         }
 
 
-        public Builder withAsyncApi(AsyncAPI asyncAPI) {
+        public Builder withAsyncApi(AsyncApiDocumentRoot asyncAPI) {
 
             this.asyncAPI = asyncAPI;
 
@@ -79,7 +81,7 @@ public class Config {
         public Config build() {
 
             if (this.asyncAPI == null) {
-                this.asyncAPI = new AsyncAPI();
+                this.asyncAPI = new AsyncApiDocumentRoot();
             }
 
             return new Config(this);

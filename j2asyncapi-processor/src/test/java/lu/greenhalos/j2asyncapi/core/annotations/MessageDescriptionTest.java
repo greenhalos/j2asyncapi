@@ -1,10 +1,9 @@
 package lu.greenhalos.j2asyncapi.core.annotations;
 
-import com.asyncapi.v2.model.channel.message.Message;
-
 import lu.greenhalos.j2asyncapi.annotations.AsyncApi;
 import lu.greenhalos.j2asyncapi.core.Config;
 import lu.greenhalos.j2asyncapi.core.MessageUtil;
+import lu.greenhalos.j2asyncapi.schemas.Message;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +23,7 @@ public class MessageDescriptionTest {
         var config = Config.defaultConfig();
         MessageUtil.process(ExampleMessage.class, config);
 
-        var messages = config.asyncAPI.getComponents().getMessages();
+        var messages = config.asyncAPI.getComponents().getMessages().getAdditionalProperties();
         assertThat(messages).hasSize(1);
 
         var message = (Message) messages.get(name(ExampleMessage.class));

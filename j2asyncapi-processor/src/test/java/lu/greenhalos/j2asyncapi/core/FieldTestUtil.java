@@ -1,10 +1,8 @@
 package lu.greenhalos.j2asyncapi.core;
 
-import com.asyncapi.v2.model.Reference;
-import com.asyncapi.v2.model.channel.message.Message;
-import com.asyncapi.v2.model.schema.Schema;
-
-import lombok.SneakyThrows;
+import lu.greenhalos.j2asyncapi.schemas.Message;
+import lu.greenhalos.j2asyncapi.schemas.Reference;
+import lu.greenhalos.j2asyncapi.schemas.Schema;
 
 import java.lang.reflect.Field;
 
@@ -60,11 +58,12 @@ public final class FieldTestUtil {
         message.setTitle(exampleClass.getSimpleName());
 
         Map<String, Object> expectedMessages = Map.of(name(exampleClass), message);
-        assertThat(config.asyncAPI.getComponents().getMessages()).usingRecursiveComparison()
+        assertThat(config.asyncAPI.getComponents().getMessages().getAdditionalProperties()).usingRecursiveComparison()
             .isEqualTo(expectedMessages);
 
         var fieldReferenceSchema = new Schema();
-        fieldReferenceSchema.setRef(String.format("#/components/schemas/%s-%x", name(fieldType), fieldSchemaHashCode));
+        fieldReferenceSchema.set$ref(String.format("#/components/schemas/%s-%x", name(fieldType),
+                fieldSchemaHashCode));
 
         var exampleSchema = new Schema();
         exampleSchema.setTitle("Example");
@@ -73,18 +72,23 @@ public final class FieldTestUtil {
         Map<String, Object> expectedSchemas = new HashMap<>();
         expectedSchemas.put(name(exampleClass), exampleSchema);
         expectedSchemas.putAll(expectedSchemasForField);
-        assertThat(config.asyncAPI.getComponents().getSchemas()).usingRecursiveComparison().isEqualTo(expectedSchemas);
+
+        assertThat(config.asyncAPI.getComponents().getSchemas().getAdditionalProperties()).usingRecursiveComparison()
+            .isEqualTo(expectedSchemas);
     }
 
 
-    @SneakyThrows
     private static Class<?> getFieldType(Class<?> exampleClass) {
 
-        return getAllFields(exampleClass).stream()
-            .filter(f -> "field".equals(f.getName()))
-            .findFirst()
-            .map(Field::getType)
-            .orElseThrow(() -> new NoSuchFieldException("field"));
+        try {
+            return getAllFields(exampleClass).stream()
+                .filter(f -> "field".equals(f.getName()))
+                .findFirst()
+                .map(Field::getType)
+                .orElseThrow(() -> new NoSuchFieldException("field"));
+        } catch (NoSuchFieldException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

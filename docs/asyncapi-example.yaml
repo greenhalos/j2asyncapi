@@ -1,4 +1,4 @@
-asyncapi: "2.0.0"
+asyncapi: "2.3.0"
 info:
   title: "Application API"
   version: "0.1.0"
@@ -9,70 +9,71 @@ info:
 servers:
   test:
     url: "http://rabbitmq"
-    protocol: "amqp"
     description: "RabbitMQ Server"
+    protocol: "amqp"
 channels:
   exchange/routing.key:
     description: "Description explaining exactly what happens here"
-    subscribe:
-      message:
-        $ref: "#/components/messages/l.g.j.e.ExampleApplication$ExamplePublisherMessage"
     publish:
       message:
         $ref: "#/components/messages/l.g.j.e.ExampleApplication$ExampleListenerMessage"
+    subscribe:
+      message:
+        $ref: "#/components/messages/l.g.j.e.ExampleApplication$ExamplePublisherMessage"
+    deprecated: false
 components:
   schemas:
-    j.l.Integer-decfea64:
+    j.m.BigDecimal-13a8d7b1:
+      type: "number"
+      format: "float"
       examples:
-      - 42
-      - 352
-      type: "integer"
-      format: "int32"
-    j.l.String-38af4fe9:
+      - 42.42
+      - 352.01
+    j.l.String-714f7ea0:
+      type: "string"
       examples:
       - "Lorem"
       - "ipsum"
+    j.l.Integer-7d3b2498:
+      type: "integer"
+      format: "int32"
+      examples:
+      - 42
+      - 352
+    j.l.String-7e061cd2:
       type: "string"
-    j.l.String-931073f3:
       examples:
       - "EUR"
       - "USD"
       - "CHF"
-      type: "string"
-    j.m.BigDecimal-dbc8e12d:
-      examples:
-      - 42.42
-      - 352.01
-      type: "number"
-      format: "float"
-    l.g.j.e.ExampleApplication$ExampleListenerMessage:
-      title: "ExampleListenerMessage"
-      properties:
-        amount:
-          $ref: "#/components/schemas/j.m.BigDecimal-dbc8e12d"
-        currency:
-          $ref: "#/components/schemas/j.l.String-931073f3"
-        id:
-          $ref: "#/components/schemas/l.g.j.e.ExampleApplication$ObjectRepresentingAnId"
     l.g.j.e.ExampleApplication$ExamplePublisherMessage:
       title: "ExamplePublisherMessage"
       properties:
         amount:
-          $ref: "#/components/schemas/j.m.BigDecimal-dbc8e12d"
+          $ref: "#/components/schemas/j.m.BigDecimal-13a8d7b1"
         currency:
-          $ref: "#/components/schemas/j.l.Integer-decfea64"
+          $ref: "#/components/schemas/j.l.Integer-7d3b2498"
     l.g.j.e.ExampleApplication$ObjectRepresentingAnId:
       title: "ObjectRepresentingAnId"
       properties:
         value:
-          $ref: "#/components/schemas/j.l.String-38af4fe9"
-  messages:
+          $ref: "#/components/schemas/j.l.String-714f7ea0"
     l.g.j.e.ExampleApplication$ExampleListenerMessage:
-      payload:
-        $ref: "#/components/schemas/l.g.j.e.ExampleApplication$ExampleListenerMessage"
       title: "ExampleListenerMessage"
+      properties:
+        amount:
+          $ref: "#/components/schemas/j.m.BigDecimal-13a8d7b1"
+        currency:
+          $ref: "#/components/schemas/j.l.String-7e061cd2"
+        id:
+          $ref: "#/components/schemas/l.g.j.e.ExampleApplication$ObjectRepresentingAnId"
+  messages:
     l.g.j.e.ExampleApplication$ExamplePublisherMessage:
+      title: "ExamplePublisherMessage"
       payload:
         $ref: "#/components/schemas/l.g.j.e.ExampleApplication$ExamplePublisherMessage"
-      title: "ExamplePublisherMessage"
       description: "this is a message which gets published"
+    l.g.j.e.ExampleApplication$ExampleListenerMessage:
+      title: "ExampleListenerMessage"
+      payload:
+        $ref: "#/components/schemas/l.g.j.e.ExampleApplication$ExampleListenerMessage"

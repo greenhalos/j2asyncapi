@@ -1,19 +1,18 @@
 package lu.greenhalos.j2asyncapi.core;
 
-import com.asyncapi.v2.model.AsyncAPI;
-import com.asyncapi.v2.model.channel.ChannelItem;
-import com.asyncapi.v2.model.channel.operation.Operation;
-import com.asyncapi.v2.model.component.Components;
-import com.asyncapi.v2.model.info.Contact;
-import com.asyncapi.v2.model.info.Info;
-import com.asyncapi.v2.model.server.Server;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator;
 
 import lu.greenhalos.j2asyncapi.annotations.AsyncApi;
+import lu.greenhalos.j2asyncapi.schemas.AsyncApiDocumentRoot;
+import lu.greenhalos.j2asyncapi.schemas.ChannelItem;
+import lu.greenhalos.j2asyncapi.schemas.Contact;
+import lu.greenhalos.j2asyncapi.schemas.Info;
+import lu.greenhalos.j2asyncapi.schemas.Operation;
+import lu.greenhalos.j2asyncapi.schemas.Server;
+import lu.greenhalos.j2asyncapi.schemas.Servers;
 
 import org.apache.commons.io.FileUtils;
 
@@ -24,13 +23,14 @@ import java.io.IOException;
 
 import java.math.BigDecimal;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 /**
@@ -49,12 +49,7 @@ public class WriteToFileTest {
     @Test
     void generate() throws IOException {
 
-        var components = new Components();
-        components.setMessages(new HashMap<>());
-        components.setSchemas(new HashMap<>());
-
-        var asyncAPI = new AsyncAPI();
-        asyncAPI.setComponents(components);
+        var asyncAPI = new AsyncApiDocumentRoot();
         asyncAPI.setInfo(info());
         asyncAPI.setServers(servers());
 
@@ -68,14 +63,17 @@ public class WriteToFileTest {
         channelItem.setDescription("Publish information");
         channelItem.setSubscribe(subscribe);
 
-        asyncAPI.setChannels(Map.of("channelName", channelItem));
+        asyncAPI.getChannels().setAdditionalProperty("channelName", channelItem);
         writeToFile(asyncAPI);
     }
 
 
-    private Map<String, Server> servers() {
+    private Servers servers() {
 
-        return Map.of("test", server());
+        var servers = new Servers();
+        servers.setAdditionalProperty("test", server());
+
+        return servers;
     }
 
 
@@ -92,12 +90,25 @@ public class WriteToFileTest {
 
     private static Info info() {
 
-        return new Info("Application API", "0.1.0", null, null,
-                new Contact("Fancy Team", "https://greenhalos.lu", "asyncapi@greenhalos.lu"), null);
+        try {
+            var contact = new Contact();
+            contact.setName("Fancy Team");
+            contact.setUrl(new URI("https://greenhalos.lu"));
+            contact.setEmail("asyncapi@greenhalos.lu");
+
+            var info = new Info();
+            info.setTitle("Application API");
+            info.setVersion("0.1.0");
+            info.setContact(contact);
+
+            return info;
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
-    private static void writeToFile(AsyncAPI asyncAPI) throws IOException {
+    private static void writeToFile(AsyncApiDocumentRoot asyncAPI) throws IOException {
 
         var objectMapper = new ObjectMapper(new YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER));
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);

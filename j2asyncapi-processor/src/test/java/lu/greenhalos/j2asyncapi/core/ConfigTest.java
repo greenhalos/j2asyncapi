@@ -1,8 +1,7 @@
 package lu.greenhalos.j2asyncapi.core;
 
-import com.asyncapi.v2.model.AsyncAPI;
-
 import lu.greenhalos.j2asyncapi.core.fields.FieldType;
+import lu.greenhalos.j2asyncapi.schemas.AsyncApiDocumentRoot;
 
 import org.junit.jupiter.api.Test;
 
@@ -50,7 +49,7 @@ class ConfigTest {
     @Test
     void builder_asyncAPI() {
 
-        var asyncAPI = new AsyncAPI();
+        var asyncAPI = new AsyncApiDocumentRoot();
         var result = Config.builder().withAsyncApi(asyncAPI).build();
 
         assertThat(result.asyncAPI).isSameAs(asyncAPI);
