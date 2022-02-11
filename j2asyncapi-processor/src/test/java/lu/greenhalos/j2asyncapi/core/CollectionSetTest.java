@@ -1,7 +1,7 @@
 package lu.greenhalos.j2asyncapi.core;
 
-import com.asyncapi.v2.model.Reference;
-import com.asyncapi.v2.model.schema.Schema;
+import lu.greenhalos.j2asyncapi.schemas.Reference;
+import lu.greenhalos.j2asyncapi.schemas.Schema;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +23,7 @@ class CollectionSetTest {
         stringSchema.setFormat(null);
         stringSchema.setExamples(List.of("Lorem", "ipsum"));
 
-        var itemSchema = new Reference("#/components/schemas/j.l.String-38af4fe9");
+        var itemSchema = new Reference("#/components/schemas/j.l.String-714f7ea0");
         var fieldSchema = new Schema();
         fieldSchema.setType("array");
         fieldSchema.setFormat(null);
@@ -31,8 +31,8 @@ class CollectionSetTest {
         fieldSchema.setItems(itemSchema);
 
         var expectedSchemasForField = Map.of( //
-                "j.l.String-38af4fe9", stringSchema, //
-                "j.u.Set-f544c514", fieldSchema //
+                "j.l.String-714f7ea0", stringSchema, //
+                "j.u.Set-b1afaed2", fieldSchema //
                 );
 
         FieldTestUtil.assertSchemaOnClass(Example.class, expectedSchemasForField, fieldSchema.hashCode());

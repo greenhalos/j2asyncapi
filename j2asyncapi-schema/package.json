@@ -1,0 +1,15 @@
+{
+  "name": "j2asyncapi",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "postinstall": "npm run mkdir && npm run copy-asyncapi-schema",
+    "mkdir": "rm -rf src/main/resources/schemas/ && mkdir -p src/main/resources/schemas/asyncapi",
+    "copy-asyncapi-schema": "cp node_modules/@asyncapi/specs/schemas/2.3.0.json src/main/resources/schemas/asyncapi/"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@asyncapi/specs": "^2.13.0"
+  }
+}

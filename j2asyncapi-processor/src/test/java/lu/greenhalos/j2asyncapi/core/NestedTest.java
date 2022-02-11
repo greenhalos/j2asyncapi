@@ -1,6 +1,6 @@
 package lu.greenhalos.j2asyncapi.core;
 
-import com.asyncapi.v2.model.schema.Schema;
+import lu.greenhalos.j2asyncapi.schemas.Schema;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,14 +22,14 @@ class NestedTest {
         stringSchema.setExamples(List.of("Lorem", "ipsum"));
 
         var nestedSchemaReference = new Schema();
-        nestedSchemaReference.setRef("#/components/schemas/j.l.String-38af4fe9");
+        nestedSchemaReference.set$ref("#/components/schemas/j.l.String-714f7ea0");
 
         var nestedSchema = new Schema();
         nestedSchema.setTitle("Nested");
         nestedSchema.setProperties(Map.of("field2", nestedSchemaReference));
 
         var field2Reference = new Schema();
-        field2Reference.setRef("#/components/schemas/l.g.j.c.NestedTest$Nested");
+        field2Reference.set$ref("#/components/schemas/l.g.j.c.NestedTest$Nested");
 
         var fieldSchema = new Schema();
         fieldSchema.setTitle("Example");
@@ -39,7 +39,7 @@ class NestedTest {
         fieldSchema.setProperties(Map.of("field", field2Reference));
 
         var expectedSchemasForField = Map.of( //
-                "j.l.String-38af4fe9", stringSchema, //
+                "j.l.String-714f7ea0", stringSchema, //
                 "l.g.j.c.NestedTest$Example", fieldSchema, //
                 "l.g.j.c.NestedTest$Nested", nestedSchema //
                 );

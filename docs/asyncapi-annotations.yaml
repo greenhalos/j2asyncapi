@@ -1,4 +1,4 @@
-asyncapi: "2.0.0"
+asyncapi: "2.3.0"
 info:
   title: "Application API"
   version: "0.1.0"
@@ -9,89 +9,94 @@ info:
 servers:
   test:
     url: "http://rabbitmq"
-    protocol: "amqp"
     description: "RabbitMQ Server"
+    protocol: "amqp"
 channels:
-  exchange/queries:
-    subscribe:
-      message:
-        $ref: "#/components/messages/j.l.Void"
-  exchange/routing.key:
-    description: "Description explaining exactly what happens here"
-    subscribe:
-      message:
-        $ref: "#/components/messages/l.g.j.a.e.p.ExamplePublisher$ExamplePublisherMessage"
-    publish:
-      message:
-        $ref: "#/components/messages/l.g.j.a.e.l.ExampleListener$ExampleListenerMessage"
   exchange/routing.key.multiple1:
     subscribe:
       message:
         $ref: "#/components/messages/j.l.Void"
+    deprecated: false
   exchange/routing.key.multiple2:
     subscribe:
       message:
         $ref: "#/components/messages/j.l.Void"
+    deprecated: false
+  exchange/queries:
+    subscribe:
+      message:
+        $ref: "#/components/messages/j.l.Void"
+    deprecated: false
+  exchange/routing.key:
+    description: "Description explaining exactly what happens here"
+    publish:
+      message:
+        $ref: "#/components/messages/l.g.j.a.e.l.ExampleListener$ExampleListenerMessage"
+    subscribe:
+      message:
+        $ref: "#/components/messages/l.g.j.a.e.p.ExamplePublisher$ExamplePublisherMessage"
+    deprecated: false
   routing.key.default.exchange:
     subscribe:
       message:
         $ref: "#/components/messages/j.l.Void"
+    deprecated: false
 components:
   schemas:
-    j.l.Integer-decfea64:
+    j.m.BigDecimal-13a8d7b1:
+      type: "number"
+      format: "float"
+      examples:
+      - 42.42
+      - 352.01
+    l.g.j.a.e.l.ExampleListener$ExampleListenerMessage:
+      title: "ExampleListenerMessage"
+      properties:
+        amount:
+          $ref: "#/components/schemas/j.m.BigDecimal-13a8d7b1"
+        currency:
+          $ref: "#/components/schemas/j.l.String-7e061cd2"
+        id:
+          $ref: "#/components/schemas/l.g.j.a.e.l.ExampleListener$ObjectRepresentingAnId-de5ddb67"
+    j.l.Integer-7d3b2498:
+      type: "integer"
+      format: "int32"
       examples:
       - 42
       - 352
-      type: "integer"
-      format: "int32"
-    j.l.String-931073f3:
+    j.l.String-7e061cd2:
+      type: "string"
       examples:
       - "EUR"
       - "USD"
       - "CHF"
-      type: "string"
-    j.l.Void:
-      title: "Void"
-      properties: {}
-    j.m.BigDecimal-dbc8e12d:
-      examples:
-      - 42.42
-      - 352.01
-      type: "number"
-      format: "float"
-    l.g.j.a.e.l.ExampleListener$ExampleListenerMessage:
-      title: "ExampleListenerMessage"
+    l.g.j.a.e.p.ExamplePublisher$ExamplePublisherMessage:
+      title: "ExamplePublisherMessage"
       properties:
         amount:
-          $ref: "#/components/schemas/j.m.BigDecimal-dbc8e12d"
+          $ref: "#/components/schemas/j.m.BigDecimal-13a8d7b1"
         currency:
-          $ref: "#/components/schemas/j.l.String-931073f3"
-        id:
-          $ref: "#/components/schemas/l.g.j.a.e.l.ExampleListener$ObjectRepresentingAnId-3841a929"
-    l.g.j.a.e.l.ExampleListener$ObjectRepresentingAnId-3841a929:
-      description: "there can only be 2 valid values"
+          $ref: "#/components/schemas/j.l.Integer-7d3b2498"
+    l.g.j.a.e.l.ExampleListener$ObjectRepresentingAnId-de5ddb67:
+      type: "string"
       examples:
       - "value1"
       - "value42"
-      type: "string"
-    l.g.j.a.e.p.ExamplePublisher$ExamplePublisherMessage:
-      title: "ExamplePublisherMessage"
-      properties:
-        amount:
-          $ref: "#/components/schemas/j.m.BigDecimal-dbc8e12d"
-        currency:
-          $ref: "#/components/schemas/j.l.Integer-decfea64"
-  messages:
+      description: "there can only be 2 valid values"
     j.l.Void:
-      payload:
-        $ref: "#/components/schemas/j.l.Void"
       title: "Void"
+      properties: {}
+  messages:
     l.g.j.a.e.l.ExampleListener$ExampleListenerMessage:
+      title: "ExampleListenerMessage"
       payload:
         $ref: "#/components/schemas/l.g.j.a.e.l.ExampleListener$ExampleListenerMessage"
-      title: "ExampleListenerMessage"
     l.g.j.a.e.p.ExamplePublisher$ExamplePublisherMessage:
+      title: "ExamplePublisherMessage"
       payload:
         $ref: "#/components/schemas/l.g.j.a.e.p.ExamplePublisher$ExamplePublisherMessage"
-      title: "ExamplePublisherMessage"
       description: "this is a message which gets published"
+    j.l.Void:
+      title: "Void"
+      payload:
+        $ref: "#/components/schemas/j.l.Void"

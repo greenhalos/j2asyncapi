@@ -1,15 +1,14 @@
 package lu.greenhalos.j2asyncapi.annoations;
 
-import com.asyncapi.v2.model.AsyncAPI;
-import com.asyncapi.v2.model.Reference;
-import com.asyncapi.v2.model.channel.ChannelItem;
-import com.asyncapi.v2.model.channel.operation.Operation;
-
 import lu.greenhalos.j2asyncapi.annoations.example.ExampleBaseApplication;
 import lu.greenhalos.j2asyncapi.annoations.example.listener.ExampleListener;
 import lu.greenhalos.j2asyncapi.annoations.example.publisher.ExamplePublisher;
 import lu.greenhalos.j2asyncapi.core.Config;
 import lu.greenhalos.j2asyncapi.core.MessageUtil;
+import lu.greenhalos.j2asyncapi.schemas.AsyncApiDocumentRoot;
+import lu.greenhalos.j2asyncapi.schemas.ChannelItem;
+import lu.greenhalos.j2asyncapi.schemas.Operation;
+import lu.greenhalos.j2asyncapi.schemas.Reference;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +22,7 @@ class AsyncApiProcessorTest {
     @Test
     void process() {
 
-        var asyncAPI = new AsyncAPI();
+        var asyncAPI = new AsyncApiDocumentRoot();
         var config = Config.builder().withAsyncApi(asyncAPI).build();
 
         AsyncApiProcessor.process(ExampleBaseApplication.class, config);
@@ -52,6 +51,6 @@ class AsyncApiProcessorTest {
                 "exchange/routing.key.multiple2", channelItemEmptyMessage, //
                 "routing.key.default.exchange", channelItemEmptyMessage //
                 );
-        assertThat(asyncAPI.getChannels()).usingRecursiveComparison().isEqualTo(expected);
+        assertThat(asyncAPI.getChannels().getAdditionalProperties()).usingRecursiveComparison().isEqualTo(expected);
     }
 }

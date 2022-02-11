@@ -1,6 +1,6 @@
 package lu.greenhalos.j2asyncapi.core;
 
-import com.asyncapi.v2.model.schema.Schema;
+import lu.greenhalos.j2asyncapi.schemas.Schema;
 
 import org.junit.jupiter.api.Test;
 
