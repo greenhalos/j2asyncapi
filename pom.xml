@@ -28,7 +28,7 @@
 
     <scm>
         <connection>scm:git:git://github.com/greenhalos/j2asyncapi.git</connection>
-        <developerConnection>scm:git:ssh://github.com:greenhalos/j2asyncapi.git</developerConnection>
+        <developerConnection>scm:git:ssh://git@github.com/greenhalos/j2asyncapi.git</developerConnection>
         <url>https://github.com/greenhalos/j2asyncapi/tree/master</url>
     </scm>
 
