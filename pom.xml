@@ -206,7 +206,7 @@
                 <executions>
                     <execution>
                         <id>flatten</id>
-                        <phase>package</phase>
+                        <phase>process-resources</phase>
                         <goals>
                             <goal>flatten</goal>
                         </goals>
@@ -220,6 +220,7 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <updatePomFile>true</updatePomFile>
                     <flattenMode>oss</flattenMode>
                 </configuration>
             </plugin>
