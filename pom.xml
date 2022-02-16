@@ -212,6 +212,12 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <flattenMode>ossrh</flattenMode>
+                    <pomElements>
+                        <distributionManagement/>
+                    </pomElements>
+                </configuration>
             </plugin>
 
         </plugins>
