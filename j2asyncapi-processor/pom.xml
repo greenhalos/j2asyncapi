@@ -6,6 +6,7 @@
         <version>0.13.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <name>j2asyncapi-processor</name>
 
     <artifactId>j2asyncapi-processor</artifactId>
 

@@ -9,6 +9,7 @@
 
     <name>${project.groupId}:${project.artifactId}</name>
     <description>A tool generate AsyncAPI yaml/json from Java code</description>
+    <url>https://github.com/greenhalos/j2asyncapi</url>
 
     <licenses>
         <license>
