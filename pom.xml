@@ -34,7 +34,6 @@
     <modules>
         <module>j2asyncapi-annotation</module>
         <module>j2asyncapi-processor</module>
-        <module>j2asyncapi-example</module>
         <module>j2asyncapi-schema</module>
     </modules>
 
