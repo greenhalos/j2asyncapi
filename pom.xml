@@ -5,7 +5,7 @@
     <groupId>lu.greenhalos</groupId>
     <artifactId>j2asyncapi</artifactId>
     <packaging>pom</packaging>
-    <version>0.10.0</version>
+    <version>0.11.0-SNAPSHOT</version>
 
     <name>${project.groupId}:${project.artifactId}</name>
     <description>A tool generate AsyncAPI yaml/json from Java code</description>
@@ -28,7 +28,7 @@
         <connection>scm:git:git://github.com/greenhalos/j2asyncapi.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/greenhalos/j2asyncapi.git</developerConnection>
         <url>https://github.com/greenhalos/j2asyncapi/tree/master</url>
-        <tag>v0.10.0</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <modules>
