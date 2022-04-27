@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@asyncapi/specs": "2.13.2"
+    "@asyncapi/specs": "2.14.0"
   }
 }
