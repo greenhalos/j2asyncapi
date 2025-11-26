@@ -1,5 +1,8 @@
 # j2asyncapi
 
+> [!WARNING]  
+> Currently no active development
+
 A lib which helps you generate `asyncapi.yaml` from your Java code based on annotations.
 
 ## How to use
